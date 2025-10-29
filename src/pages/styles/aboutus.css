@@ -1,0 +1,185 @@
+/* src/pages/aboutus.css */
+.page {
+  display: block;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+/* Reusable container */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 42vw, 520px);
+  overflow: hidden;
+  background: #e5e7eb; /* fallback while image loads */
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+  object-position: center;
+  filter: none;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 16px;
+}
+.hero-overlay h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  margin: 0 0 8px;
+}
+.hero-overlay p {
+  font-size: clamp(14px, 2vw, 18px);
+  opacity: 0.95;
+}
+
+/* About block */
+.about-block h2,
+.mva h2 {
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 0 0 12px;
+}
+
+/* About section container */
+.about-block {
+  background: transparent;
+  padding: clamp(16px, 3vw, 32px);
+  border-radius: 0;
+}
+
+/* Optional dark mode for the about-block when you want white text */
+.about-block.dark {
+  background: #0f0f10;
+  border-radius: 8px;
+}
+
+/* Word-by-word text */
+.who-text {
+  padding-left: 120px;
+  line-height: 1.6;
+  font-size: 16px;
+  /* default readable color on light background */
+  color: #111827; /* gray-900 for headings/body */
+}
+.who-word {
+  display: inline;
+  /* base color handled inline per state to maintain contrast */
+}
+
+/* Do NOT force white text globally on in-view; let per-word colors handle contrast */
+.about-block.in-view .who-text {
+  color: inherit; /* keep whatever is set above */
+}
+
+/* Mission / Vision / Achievements grid */
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+.card p {
+  margin: 0;
+  color: #444;
+  line-height: 1.6;
+}
+.bullets {
+  padding-left: 18px;
+  margin: 0;
+}
+.bullets li {
+  margin: 6px 0;
+}
+
+/* Leader’s message section */
+.leaders h2 {
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 10px 0 16px;
+  color: #0b5d9a;
+}
+
+/* Media object: image left, text right */
+.media {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 18px;
+  align-items: start;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  margin-bottom: 16px;
+}
+.media-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #e5e7eb;
+}
+.media-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+.media-body h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #0b5d9a;
+}
+.media-body .name {
+  margin: 0;
+  font-weight: 700;
+  color: #1f2937;
+}
+.media-body .role {
+  margin: 2px 0 10px;
+  color: #4b5563;
+}
+.media-body p {
+  margin: 8px 0;
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* Responsive: stack image above text on small screens */
+@media (max-width: 800px) {
+  .media {
+    grid-template-columns: 1fr;
+  }
+  .media-image {
+    height: clamp(180px, 40vw, 240px);
+  }
+}

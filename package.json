@@ -1,0 +1,36 @@
+{
+  "name": "mindronfdn-web",
+  "version": "1.0.0",
+  "description": "Mindron Foundation Website",
+  "keywords": [
+    "react",
+    "vite"
+  ],
+  "homepage": "https://github.com/rajagurusk/Mindron-Foundation-Web#readme",
+  "bugs": {
+    "url": "https://github.com/rajagurusk/Mindron-Foundation-Web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajagurusk/Mindron-Foundation-Web.git"
+  },
+  "license": "MIT",
+  "author": "Rajaguru Sivakumar",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.3",
+    "vit": "^0.0.1",
+    "vite": "^7.1.6"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.2"
+  }
+}
