@@ -92,31 +92,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LATEST UPDATES */}
       <section className="home-updates">
-        <h4>Latest Updates</h4>
-        <div className="home-update-row">
-          <div className="home-update-circle">
-            <span>New health camp launch in Pune.</span>
-          </div>
-          <div className="home-update-circle">
-            <span>Volunteer drive starts November 5th.</span>
-          </div>
-          <div className="home-update-circle">
-            <span>Diabetes awareness talk on World Diabetes Day.</span>
-          </div>
-          <div className="home-update-circle">
-            <span>Thank you donors: over ₹5 lakh raised!</span>
-          </div>
-        </div>
-        <form className="home-subscribe">
-          <label>
-            Subscribe now to keep up with our latest developments 
-            <input type="email" placeholder="Enter Your Email" />
-          </label>
-          <button type="submit">Subscribe</button>
-        </form>
-      </section>
+  <h4 className="home-updates-title">Latest Updates</h4>
+  <div className="home-updates-row">
+    <div className="home-updates-card">
+      <div className="updates-circle-img">
+        <img src="/images/latest1.jpg" alt="Update 1" />
+      </div>
+      <div className="updates-desc">
+        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+      </div>
+    </div>
+    <div className="home-updates-card">
+      <div className="updates-circle-img">
+        <img src="/images/latest2.jpg" alt="Update 2" />
+      </div>
+      <div className="updates-desc">
+        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+      </div>
+    </div>
+    <div className="home-updates-card">
+      <div className="updates-circle-img">
+        <img src="/images/latest3.jpg" alt="Update 3" />
+      </div>
+      <div className="updates-desc">
+        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+      </div>
+    </div>
+    <div className="home-updates-card">
+      <div className="updates-circle-img">
+        <img src="/images/latest4.jpg" alt="Update 4" />
+      </div>
+      <div className="updates-desc">
+        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+      </div>
+    </div>
+  </div>
+ <form className="home-subscribe-row">
+  <span className="subscribe-label">
+    Subscribe now to keep up with our latest developments
+  </span>
+  <input type="email" placeholder="Enter Your Email" />
+  <button type="submit" className="home-send-btn">Send</button>
+</form>
+</section>
+
+
 
       <Footer />
     </div>

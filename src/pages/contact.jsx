@@ -1,5 +1,7 @@
 import "./styles/contact.css";
 import Footer from "../components/footer.jsx";
+import React, { useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function ContactHero({ src = "/images/contactus.jpg", alt = "Contact banner" }) {
   return (
@@ -9,126 +11,74 @@ function ContactHero({ src = "/images/contactus.jpg", alt = "Contact banner" }) 
   );
 }
 
-export default function ContactPage() {
+const contactDetails = [
+  {
+    title: "Corporate Headquarter(mumbai)",
+    contact: "+91 XXXXXXXXXX",
+    email: "mindronfoundation@gmail.com",
+    address: "D-218, Agra Road Industrial Premises, Amrut Nagar, Behind R City Mall, Ghatkopar(west), Mumbai-400086.",
+    map: "/images/map-mumbai.png",
+  },
+  {
+    title: "Lucknow",
+    contact: "+91 XXXXXXXXXX",
+    email: "mindronfoundation@gmail.com",
+    address: "Office no. 404, 4th floor, Mukut Tower, Kursi Rd, Sector 2, Vikas nagar, Lucknow, Uttar Pradesh 226022.",
+    map: "/images/map-lucknow.png",
+  },
+  {
+    title: "USA–New York",
+    contact: "+91 XXXXXXXXXX",
+    email: "mindronfoundation@gmail.com",
+    address: "D-218, Agra Road Industrial Premises, Amrut Nagar, Behind R City Mall, Ghatkopar(west), Mumbai-400086.",
+    map: "/images/map-ny.png",
+  },
+  {
+    title: "Hong Kong",
+    contact: "+91 XXXXXXXXXX",
+    email: "mindronfoundation@gmail.com",
+    address: "Office no. 404, 4th floor, Mukut Tower, Kursi Rd, Sector 2, Vikas nagar, Lucknow, Uttar Pradesh 226022.",
+    map: "/images/map-hongkong.png",
+  }
+];
+
+function ContactForm() {
+  const recaptchaRef = useRef();
+
   return (
-    <div className="contact-page-wrapper">
-      <div className="contact-page-sketch">
-        <header className="topbar">
-          <div className="brand">
-            <div className="logo-circle">MF</div>
+    <section className="contact-form-wrap">
+      <div className="contact-form-card">
+        <h2>Contact Us</h2>
+        <div className="form-subtitle">
+          We'd Love to hear from you—whether it's a question, suggestion, or a story you'd like to share
+        </div>
+        <form className="contact-form">
+          <input type="text" name="fullname" placeholder="Full Name" required />
+          <input type="email" name="email" placeholder="Email Address" required />
+          <div className="row-flex">
+            <input type="text" name="subject" placeholder="Subject" required />
+            <input type="text" name="phone" placeholder="Phone No" required />
           </div>
-          <nav className="nav">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a className="active" href="/contact">
-              Contact
-            </a>
-          </nav>
-        </header>
-
-        <ContactHero />
-
-        <section className="hq card">
-          <div className="hq-left">
-            <h2>Corporate Headquarter (Mumbai)</h2>
-            <ul className="kv row-order">
-              <li>
-                <span className=" ">Contact no:</span>
-                <span className="v">+91 98765 43210</span>
-              </li>
-              <li>
-                <span className="k">Email:</span>
-                <span className="v">info@mindronfoundation.org</span>
-              </li>
-              <li className="multiline">
-                <span className="k">Address:</span>
-                <span className="v">
-                  3rd Floor, Mindron House, BKC, Mumbai 400051, Maharashtra, India
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div className="map-box">
-            <iframe
-              title="Mumbai map"
-              src="https://maps.google.com/maps?q=BKC%20Mumbai&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="260"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
+          <textarea name="message" placeholder="Your Message" rows={4} required />
+          <div className="recaptcha-row" style={{ display: 'flex', justifyContent: 'center', margin: '18px 0' }}>
+            <ReCAPTCHA
+              sitekey="YOUR_RECAPTCHA_SITE_KEY" // <-- Replace with your own site key
+              ref={recaptchaRef}
             />
           </div>
-        </section>
+          <button type="submit" className="submit-btn">Submit</button>
+        </form>
+      </div>
+    </section>
+  );
+}
 
-        <section className="row-pair">
-          <div className="city card">
-            <div className="city-head">
-              <span className="index">1</span>
-              <h3>Lucknow</h3>
-            </div>
-            <ul className="kv row-order">
-              <li>
-                <span className="k">Contact no:</span>
-                <span className="v">+91 91234 56780</span>
-              </li>
-              <li className="multiline">
-                <span className="k">Address:</span>
-                <span className="v">Gomti Nagar, Lucknow 226010</span>
-              </li>
-            </ul>
-            <div className="map-box small">
-              <span>Map</span>
-            </div>
-          </div>
-
-          <div className="city card">
-            <div className="city-head">
-              <span className="index">2</span>
-              <h3>Hong Kong</h3>
-            </div>
-            <ul className="kv row-order">
-              <li>
-                <span className="k">Contact no:</span>
-                <span className="v">+852 5551 2233</span>
-              </li>
-              <li className="multiline">
-                <span className="k">Address:</span>
-                <span className="v">Central, Hong Kong</span>
-              </li>
-            </ul>
-            <div className="map-box small">
-              <span>Map</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="row-single">
-          <div className="city card wide">
-            <div className="city-head">
-              <span className="index">3</span>
-              <h3>USA – New York</h3>
-            </div>
-            <div className="city-grid">
-              <ul className="kv row-order">
-                <li>
-                  <span className="k">Contact no:</span>
-                  <span className="v">+1 (212) 555‑0183</span>
-                </li>
-                <li className="multiline">
-                  <span className="k">Address:</span>
-                  <span className="v">
-                    5th Avenue, Manhattan, New York, NY 10001
-                  </span>
-                </li>
-              </ul>
-              <div className="map-box">
-                <span>Map</span>
-              </div>
-            </div>
-          </div>
-        </section>
+export default function ContactPage() {
+  return (
+    <div>
+      <ContactHero />
+      <div>
+        <ContactForm />
       </div>
       <Footer />
     </div>
