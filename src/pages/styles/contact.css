@@ -1,135 +1,152 @@
-.contact-main {
-  width: 90%;
-  margin: 30px auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-}
-
+/* Office Section */
 .offices-section {
+  width: 93%;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 40px;
+  gap: 24px 0;
 }
-
 .office-card {
-  width: 45%;
+  width: 47%;
   background: #fff;
-  border-radius: 10px;
-  margin-bottom: 32px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.03);
-  padding: 15px 20px;
+  border-radius: 11px;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.07);
+  padding: 17px 22px 15px 22px;
   box-sizing: border-box;
+  margin-bottom: 18px;
 }
-
 .office-card h4 {
-  margin-top: 10px;
-  margin-bottom: 8px;
-  color: #1186e6;
+  font-weight: 700;
+  color: #195c95;
+  font-size: 1.13em;
+  margin: 8px 0 10px 0;
 }
-
 .map-img {
   width: 100%;
+  max-width: 310px;
   height: 120px;
   object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  background: #f6f6f6;
+  border-radius: 6px;
+  margin-bottom: 12px;
 }
-
-.contact-form-section {
-  width: 100%;
-  background: #f9fafd;
-  border-radius: 25px;
-  padding: 30px 18px 22px 18px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+.office-label {
+  font-weight: 700;
+  color: #105a94;
+  font-size: 1em;
+  display: inline;
 }
-
-.contact-form-section h2 {
+.office-value, .office-address {
+  color: #1b3055;
+  font-size: 1em;
+  font-weight: 400;
   margin-bottom: 2px;
-  color: #1186e6;
+  display: inline;
+}
+.office-address {
+  font-weight: 600;
 }
 
+/* Contact Form Section */
+.contact-form-section {
+  max-width: 600px;
+  margin: 55px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 44px 36px 26px 36px;
+  text-align: center;
+}
+.contact-form-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  color: #175a8c;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 .contact-form-section p {
-  font-size: 0.98em;
-  margin-bottom: 20px;
-  color: #444;
+  color: #2a5d85;
+  font-size: 1.08em;
+  margin-bottom: 23px;
 }
-
 .contact-form {
-  max-width: 420px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
 }
-
-.form-row {
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  font-size: 1em;
+  padding: 12px;
+  border: 1px solid #a6cbe1;
+  border-radius: 6px;
   margin-bottom: 15px;
+  background: #fbfbfb;
+  outline: none;
+  transition: border 0.11s;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  border-color: #175a8c;
+}
+.form-row {
+  margin-bottom: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.form-row input[type="text"],
-.form-row input[type="email"],
-.form-row textarea {
+  gap: 15px;
   width: 100%;
-  padding: 9px 13px;
-  border: 1px solid #cdd6e1;
-  border-radius: 4px;
-  font-size: 1em;
-  font-family: inherit;
-  outline: none;
-  margin-bottom: 0;
-  box-sizing: border-box;
 }
-
-.form-row input[type="email"]:not(:last-child) {
-  margin-right: 5px;
+.form-row input[type="text"],
+.form-row input[type="email"] {
+  width: 100%;
 }
-
-.form-row input[type="email"],
-.form-row input[type="text"]:not(:last-child) {
-  width: 48%;
-}
-
-textarea {
+.contact-form textarea {
+  min-height: 78px;
   resize: vertical;
-  min-height: 60px;
   font-family: inherit;
 }
-
 .captcha-row {
-  align-items: center;
-  justify-content: flex-start;
+  display: flex;
+  justify-content: center;
+  margin: 18px 0;
 }
-
-.captcha-row input[type="checkbox"] {
-  margin-right: 7px;
-}
-
 .submit-btn {
-  font-size: 1em;
+  width: 170px;
+  font-size: 1.13em;
   font-weight: 600;
-  padding: 8px 32px;
+  padding: 11px 0;
   color: #fff;
-  background: #1186e6;
+  background: #7aad55;
   border: none;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: 6px;
+  margin-top: 11px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.19s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
 }
 .submit-btn:hover {
-  background: #0d6dbc;
+  background: #60913e;
 }
 
-/* Responsive styling */
+/* Responsive */
 @media (max-width: 900px) {
-  .office-card {
-    width: 100%;
-  }
   .offices-section {
     flex-direction: column;
+    gap: 0;
+  }
+  .office-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .contact-form-section {
+    max-width: 98vw;
+    padding: 20px 8px;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 11px;
   }
 }

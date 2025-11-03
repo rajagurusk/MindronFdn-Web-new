@@ -3,14 +3,6 @@ import Footer from "../components/footer.jsx";
 import React, { useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-function ContactHero({ src = "/images/contactus.jpg", alt = "Contact banner" }) {
-  return (
-    <section className="hero-image" aria-label={alt}>
-      <img src={src} alt={alt} />
-    </section>
-  );
-}
-
 const contactDetails = [
   {
     title: "Corporate Headquarter(mumbai)",
@@ -42,33 +34,55 @@ const contactDetails = [
   }
 ];
 
+function OfficesSection() {
+  return (
+    <section className="offices-section">
+      {contactDetails.map((office, idx) => (
+        <div className="office-card" key={idx}>
+          <h4>{office.title}</h4>
+          <img src={office.map} alt={office.title + " map"} className="map-img" />
+          <div style={{ marginTop: 8 }}>
+            <span className="office-label">Contact no: </span><span className="office-value">{office.contact}</span><br />
+            <span className="office-label">Email: </span><span className="office-value">{office.email}</span><br />
+            <span className="office-label">Address: </span><span className="office-address">{office.address}</span>
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+}
+
 function ContactForm() {
   const recaptchaRef = useRef();
 
   return (
-    <section className="contact-form-wrap">
-      <div className="contact-form-card">
-        <h2>Contact Us</h2>
-        <div className="form-subtitle">
-          We'd Love to hear from you—whether it's a question, suggestion, or a story you'd like to share
-        </div>
-        <form className="contact-form">
+    <section className="contact-form-section">
+      <h2>Contact Us</h2>
+      <p>
+        We'd Love to hear from you—whether it's a question, suggestion, or a story you'd like to share
+      </p>
+      <form className="contact-form">
+        <div className="form-row">
           <input type="text" name="fullname" placeholder="Full Name" required />
+        </div>
+        <div className="form-row">
           <input type="email" name="email" placeholder="Email Address" required />
-          <div className="row-flex">
-            <input type="text" name="subject" placeholder="Subject" required />
-            <input type="text" name="phone" placeholder="Phone No" required />
-          </div>
+        </div>
+        <div className="form-row">
+          <input type="text" name="subject" placeholder="Subject" required />
+          <input type="text" name="phone" placeholder="Phone No" required />
+        </div>
+        <div className="form-row">
           <textarea name="message" placeholder="Your Message" rows={4} required />
-          <div className="recaptcha-row" style={{ display: 'flex', justifyContent: 'center', margin: '18px 0' }}>
-            <ReCAPTCHA
-              sitekey="YOUR_RECAPTCHA_SITE_KEY" // <-- Replace with your own site key
-              ref={recaptchaRef}
-            />
-          </div>
-          <button type="submit" className="submit-btn">Submit</button>
-        </form>
-      </div>
+        </div>
+        <div className="captcha-row" style={{ display: 'flex', justifyContent: 'center', margin: '18px 0' }}>
+          <ReCAPTCHA
+            sitekey="YOUR_RECAPTCHA_SITE_KEY"
+            ref={recaptchaRef}
+          />
+        </div>
+        <button type="submit" className="submit-btn">Submit</button>
+      </form>
     </section>
   );
 }
@@ -76,11 +90,10 @@ function ContactForm() {
 export default function ContactPage() {
   return (
     <div>
-      <ContactHero />
-      <div>
-        <ContactForm />
-      </div>
+      <OfficesSection />
+      <ContactForm />
       <Footer />
     </div>
   );
 }
+import "./styles/contact.css";
