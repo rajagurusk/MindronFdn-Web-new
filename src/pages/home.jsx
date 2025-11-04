@@ -18,13 +18,13 @@ export default function Home() {
             About Us
           </h2>
           <p>
-            At <strong>Foundation Mind</strong>, we believe that compassion is the foundation of health, and together, we work to create change for those in need.
+            At <strong>Foundation Mind</strong>, we believe that compassion is the most powerful form of luxury. Founded with a vision to uplift underserved communities through dignity, care, and opportunity, our mission blends heartfelt service with refined execution.
           </p>
           <p>
-            You can sustain a vibrant impact—whether it's providing medical treatment, extending nutrition, or supporting well-being programs for women and children.
+            We focus on sustainable impact—whether it’s providing education to bright young minds, supporting women’s empowerment, or delivering healthcare with humanity. Every initiative is guided by empathy, transparency, and a commitment to excellence.
           </p>
           <p>
-            Our foundation is built on the belief that giving unlocks potential and inspires change. With every person genuinely involved, miracles begin to happen!
+            Our foundation is built on the belief that giving should feel beautiful—because when generosity meets intention, it creates lasting change.
           </p>
         </div>
         <div className="home-about-photo">
@@ -93,51 +93,49 @@ export default function Home() {
       </section>
 
       <section className="home-updates">
-  <h4 className="home-updates-title">Latest Updates</h4>
-  <div className="home-updates-row">
-    <div className="home-updates-card">
-      <div className="updates-circle-img">
-        <img src="/images/latest1.jpg" alt="Update 1" />
-      </div>
-      <div className="updates-desc">
-        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-      </div>
-    </div>
-    <div className="home-updates-card">
-      <div className="updates-circle-img">
-        <img src="/images/latest2.jpg" alt="Update 2" />
-      </div>
-      <div className="updates-desc">
-        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-      </div>
-    </div>
-    <div className="home-updates-card">
-      <div className="updates-circle-img">
-        <img src="/images/latest3.jpg" alt="Update 3" />
-      </div>
-      <div className="updates-desc">
-        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-      </div>
-    </div>
-    <div className="home-updates-card">
-      <div className="updates-circle-img">
-        <img src="/images/latest4.jpg" alt="Update 4" />
-      </div>
-      <div className="updates-desc">
-        Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-      </div>
-    </div>
-  </div>
- <form className="home-subscribe-row">
-  <span className="subscribe-label">
-    Subscribe now to keep up with our latest developments
-  </span>
-  <input type="email" placeholder="Enter Your Email" />
-  <button type="submit" className="home-send-btn">Send</button>
-</form>
-</section>
-
-
+        <h4 className="home-updates-title">Latest Updates</h4>
+        <div className="home-updates-row">
+          <div className="home-updates-card">
+            <div className="updates-circle-img">
+              <img src="/images/latest1.jpg" alt="Update 1" />
+            </div>
+            <div className="updates-desc">
+              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+            </div>
+          </div>
+          <div className="home-updates-card">
+            <div className="updates-circle-img">
+              <img src="/images/latest2.jpg" alt="Update 2" />
+            </div>
+            <div className="updates-desc">
+              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+            </div>
+          </div>
+          <div className="home-updates-card">
+            <div className="updates-circle-img">
+              <img src="/images/latest3.jpg" alt="Update 3" />
+            </div>
+            <div className="updates-desc">
+              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+            </div>
+          </div>
+          <div className="home-updates-card">
+            <div className="updates-circle-img">
+              <img src="/images/latest4.jpg" alt="Update 4" />
+            </div>
+            <div className="updates-desc">
+              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
+            </div>
+          </div>
+        </div>
+        <form className="home-subscribe-row">
+          <span className="subscribe-label">
+            Subscribe now to keep up with our latest developments
+          </span>
+          <input type="email" placeholder="Enter Your Email" />
+          <button type="submit" className="home-send-btn">Send</button>
+        </form>
+      </section>
 
       <Footer />
     </div>
