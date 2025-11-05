@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/footer.jsx";
+import Donatemodel from "./Donatemodel"; // adjust path if your modal is in a different location
 import "./styles/home.css";
 
 export default function Home() {
+  const [showDonate, setShowDonate] = useState(false);
+
+  const handleDonateClick = (e) => {
+    e.preventDefault();
+    setShowDonate(true);
+  };
+
   return (
     <div className="home-container">
       {/* HERO */}
@@ -61,9 +69,11 @@ export default function Home() {
           </div>
         </div>
         <div className="home-stat-center">
-          <p>Every contribution, big or small, makes a difference.<br />
-             Together, we can save lives and build a healthier tomorrow.</p>
-          <button className="home-donate-btn">Donate</button>
+          <p>
+            Every contribution, big or small, makes a difference.<br />
+            Together, we can save lives and build a healthier tomorrow.
+          </p>
+          <button className="home-donate-btn" onClick={handleDonateClick}>Donate</button>
         </div>
       </section>
 
@@ -138,6 +148,8 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {showDonate && <Donatemodel onClose={() => setShowDonate(false)} />}
     </div>
   );
 }

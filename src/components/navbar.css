@@ -187,6 +187,15 @@
   color: #fff !important;
   border-color: #184989;
 }
+/* Highlight for active nav link */
+.navbar-links a.active {
+  color: #fff !important;
+  background: #87bb65;
+  border-radius: 8px;
+  padding: 4px 16px;
+  transition: background 0.18s;
+}
+
 
 /* ------ Responsive Queries ------ */
 @media (max-width: 900px) {
