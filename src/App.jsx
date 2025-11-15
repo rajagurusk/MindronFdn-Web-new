@@ -5,8 +5,7 @@ import Home from "./pages/home.jsx";
 import About from "./pages/aboutus.jsx";
 import Contact from "./pages/contact.jsx";
 import Helpdesk from "./pages/helpdesk.jsx";
-
-// Removed import for Donate page
+import Donate from "./pages/donate.jsx"; // <-- Add this import (adjust path if needed)
 
 export default function App() {
   return (
@@ -17,7 +16,7 @@ export default function App() {
         <Route path="/aboutus" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/help" element={<Helpdesk />} />
-        {/* Removed route for /donate */}
+        <Route path="/donate" element={<Donate />} /> {/* <-- Add this route */}
       </Routes>
     </BrowserRouter>
   );
