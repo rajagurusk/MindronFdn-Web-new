@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // <- Add this for navigation
 import Footer from "../components/footer.jsx";
 import "./styles/home.css";
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // <- Enable navigation
 
   // Subscribe form handler
   const handleSubscribeSubmit = async (e) => {
@@ -97,7 +99,13 @@ export default function Home() {
             Every contribution, big or small, makes a difference.<br />
             Together, we can save lives and build a healthier tomorrow.
           </p>
-          {/* removed donate button as donate modal is removed */}
+          {/* Donate button added below the paragraph */}
+          <button
+            className="home-donate-btn"
+            onClick={() => navigate("/donate")}
+          >
+            Donate
+          </button>
         </div>
       </section>
 
