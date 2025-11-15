@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Footer from "../components/footer.jsx";
 import "./styles/helpdesk.css";
 
-
 const Helpdesk = () => {
   const [form, setForm] = useState({
     name: "",
@@ -30,15 +29,7 @@ const Helpdesk = () => {
 
   return (
     <div className="helpdesk-page">
-      <div className="helpdesk-header-img">
-        <img
-          src="https://images.pexels.com/photos/6646912/pexels-photo-6646912.jpeg"
-          alt="Volunteers"
-        />
-        <div className="helpdesk-img-credit">
-          iStock<br />Credit: dragana991
-        </div>
-      </div>
+      {/* Removed helpdesk-header-img */}
       <div className="helpdesk-container">
         <form className="helpdesk-form" onSubmit={handleSubmit}>
           <h2>Enquiry</h2>
@@ -130,3 +121,4 @@ const Helpdesk = () => {
 };
 
 export default Helpdesk;
+   

@@ -5,32 +5,6 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.helpdesk-header-img {
-  width: 100%;
-  height: 175px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  background: #eee;
-}
-
-.helpdesk-header-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.helpdesk-img-credit {
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
-  color: #fff;
-  font-size: 13px;
-  background: rgba(0,0,0,0.27);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
 .helpdesk-container {
   display: flex;
   justify-content: center;
@@ -162,8 +136,5 @@
   .helpdesk-form {
     padding: 16px 2vw;
     max-width: 98vw;
-  }
-  .helpdesk-header-img {
-    height: 120px;
   }
 }

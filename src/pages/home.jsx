@@ -5,10 +5,41 @@ import "./styles/home.css";
 
 export default function Home() {
   const [showDonate, setShowDonate] = useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleDonateClick = (e) => {
     e.preventDefault();
     setShowDonate(true);
+  };
+
+  // Subscribe form handler
+  const handleSubscribeSubmit = async (e) => {
+    e.preventDefault();
+    setMessage(''); // Clear message on new attempt
+
+    if (!email) {
+      setMessage('Please enter an email.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('Subscribed successfully!');
+        setEmail(''); // Clear input box on success
+      } else {
+        setMessage(data.error || 'Subscription failed.');
+      }
+    } catch (error) {
+      setMessage('Error connecting to the server.');
+    }
   };
 
   return (
@@ -102,6 +133,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* LATEST UPDATES + SUBSCRIBE FORM */}
       <section className="home-updates">
         <h4 className="home-updates-title">Latest Updates</h4>
         <div className="home-updates-row">
@@ -138,13 +170,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <form className="home-subscribe-row">
+        <form className="home-subscribe-row" onSubmit={handleSubscribeSubmit}>
           <span className="subscribe-label">
             Subscribe now to keep up with our latest developments
           </span>
-          <input type="email" placeholder="Enter Your Email" />
+          <input
+            type="email"
+            placeholder="Enter Your Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
           <button type="submit" className="home-send-btn">Send</button>
         </form>
+        {message && <p className="subscribe-message">{message}</p>}
       </section>
 
       <Footer />

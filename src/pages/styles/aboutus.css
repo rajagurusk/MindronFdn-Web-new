@@ -10,12 +10,14 @@ body, .aboutus-page {
 /* HERO SECTION */
 .aboutus-hero-img img {
   width: 100%;
-  max-height: 220px;
+  height: 650px; /* Increased height for header-like effect */
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 20px;
   display: block;
   margin: 0 auto 26px auto;
 }
+
+
 
 /* WHO WE ARE */
 .aboutus-whoarewe {

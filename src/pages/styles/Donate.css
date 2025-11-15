@@ -1,0 +1,75 @@
+.donate-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+}
+
+.donate-header {
+  margin-bottom: 22px;
+}
+
+.donate-back-btn {
+  background: #1f7cc7; /* Use your primary brand color */
+  color: #fff;
+  padding: 8px 22px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+h2 {
+  color: #1f7cc7; /* Headline color */
+  margin-bottom: 24px;
+}
+
+.donate-form .form-row {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.donate-form input, .donate-form select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d2e6fa;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+.form-checkbox {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.donate-note {
+  margin-top: 12px;
+  background: #f7fafd;
+  color: #038365;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.donate-payment-methods {
+  margin-top: 18px;
+  color: #666;
+  font-size: 18px;
+}
+
+.donate-submit-btn {
+  margin-top: 24px;
+  padding: 12px 0;
+  width: 100%;
+  background: #1f7cc7; /* Main theme color */
+  color: #fff;
+  font-weight: bold;
+  border-radius: 7px;
+  border: none;
+  font-size: 19px;
+  cursor: pointer;
+}

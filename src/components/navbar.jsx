@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // Instead of <a>
+import { NavLink } from 'react-router-dom';
 import './navbar.css';
-import Donatemodel from '../pages/Donatemodel';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showDonate, setShowDonate] = useState(false);
 
   const handleHamburger = () => {
     setMenuOpen((prev) => !prev);
@@ -13,12 +11,6 @@ export default function Navbar() {
 
   const closeMenu = () => {
     setMenuOpen(false);
-  };
-
-  const handleDonateClick = (e) => {
-    e.preventDefault();
-    setShowDonate(true);
-    closeMenu();
   };
 
   return (
@@ -50,7 +42,7 @@ export default function Navbar() {
                 <NavLink to="/help" onClick={closeMenu}>Help Desk</NavLink>
               </li>
             </ul>
-            <a href="/donate" className="navbar-donate-mobile" onClick={handleDonateClick}>Donate</a>
+            <NavLink to="/donate" className="navbar-donate-mobile" onClick={closeMenu}>Donate</NavLink>
           </div>
           <div className="navbar-section navbar-center">
             <ul className="navbar-links">
@@ -69,11 +61,10 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="navbar-section navbar-right">
-            <a href="/donate" className="navbar-donate" onClick={handleDonateClick}>Donate</a>
+            <NavLink to="/donate" className="navbar-donate" onClick={closeMenu}>Donate</NavLink>
           </div>
         </div>
       </nav>
-      {showDonate && <Donatemodel onClose={() => setShowDonate(false)} />}
     </>
   );
 }
