@@ -42,7 +42,7 @@ export default function Navbar() {
                 <NavLink to="/help" onClick={closeMenu}>Help Desk</NavLink>
               </li>
             </ul>
-            <NavLink to="/donate" className="navbar-donate-mobile" onClick={closeMenu}>Donate</NavLink>
+            {/* <NavLink to="/donate" className="navbar-donate-mobile" onClick={closeMenu}>Donate</NavLink> */}
           </div>
           <div className="navbar-section navbar-center">
             <ul className="navbar-links">
