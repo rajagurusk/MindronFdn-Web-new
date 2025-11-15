@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../pages/styles/donate.css';
+import '../pages/styles/Donate.css';
 
 
 function Donate() {
