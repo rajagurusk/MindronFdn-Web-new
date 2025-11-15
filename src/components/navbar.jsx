@@ -42,6 +42,7 @@ export default function Navbar() {
                 <NavLink to="/help" onClick={closeMenu}>Help Desk</NavLink>
               </li>
             </ul>
+            <NavLink to="/donate" className="navbar-donate-mobile" onClick={closeMenu}>Donate</NavLink>
           </div>
           <div className="navbar-section navbar-center">
             <ul className="navbar-links">
@@ -59,9 +60,9 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="navbar-section navbar-right">
-            {/* Removed Donate Link */}
-          </div>
+          {/* <div className="navbar-section navbar-right">
+            <NavLink to="/donate" className="navbar-donate" onClick={closeMenu}>Donate</NavLink>
+          </div> */}
         </div>
       </nav>
     </>
