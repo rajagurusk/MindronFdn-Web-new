@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/donatemodel.css";
+import "./styles/Donatemodel.css";
 
 export default function Donatemodel({ onClose }) {
   return (
