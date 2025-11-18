@@ -37,10 +37,30 @@ function Footer() {
         <div className="footer-social-section">
           <h4>Follow Us</h4>
           <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Linkdin</a></li>
-            <li><a href="#">Twitter</a></li>
+            <li>
+              <a href="https://www.facebook.com/mindronfdn" target="_blank" rel="noopener noreferrer">
+                <img src="/public/images/facebook.jpg" alt="Facebook" className="social-icon" />
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/mindron_foundation?igsh=MTZyaGVjcnhjYTZ5eA==" target="_blank" rel="noopener noreferrer">
+                <img src="/public/images/instagram.jpg" alt="Instagram" className="social-icon" />
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="/public/images/linkdin.jpg" alt="LinkedIn" className="social-icon" />
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/MindronFdn" target="_blank" rel="noopener noreferrer">
+                <img src="/public/images/twitter.jpg" alt="Twitter" className="social-icon" />
+                Twitter
+              </a>
+            </li>
           </ul>
         </div>
       </div>

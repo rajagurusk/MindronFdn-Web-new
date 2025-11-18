@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <- Add this for navigation
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer.jsx";
 import "./styles/home.css";
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // <- Enable navigation
+  const navigate = useNavigate();
 
   // Subscribe form handler
   const handleSubscribeSubmit = async (e) => {
     e.preventDefault();
-    setMessage(''); // Clear message on new attempt
+    setMessage(''); // Clear previous messages
 
     if (!email) {
       setMessage('Please enter an email.');
@@ -19,16 +19,17 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/subscribe', {
+      const response = await fetch('http://localhost:5000/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
 
       const data = await response.json();
+
       if (response.ok) {
-        setMessage('Subscribed successfully!');
-        setEmail(''); // Clear input box on success
+        setMessage(data.message);  // "Subscribed successfully"
+        setEmail('');              // Clear input on success
       } else {
         setMessage(data.error || 'Subscription failed.');
       }
@@ -99,7 +100,6 @@ export default function Home() {
             Every contribution, big or small, makes a difference.<br />
             Together, we can save lives and build a healthier tomorrow.
           </p>
-          {/* Donate button added below the paragraph */}
           <button
             className="home-donate-btn"
             onClick={() => navigate("/donate")}
@@ -180,6 +180,7 @@ export default function Home() {
             placeholder="Enter Your Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            required
           />
           <button type="submit" className="home-send-btn">Send</button>
         </form>

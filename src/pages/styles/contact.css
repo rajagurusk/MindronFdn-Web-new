@@ -51,13 +51,19 @@
 /* Contact Form Section */
 .contact-form-section {
   max-width: 600px;
-  margin: 55px auto;
+  margin: 0 auto;                   /* Center horizontally */
+  min-height: 70vh;                 /* Give enough height to center vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;          /* Vertically center content */
+  align-items: center;              /* Horizontally center items */
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.07);
   padding: 44px 36px 26px 36px;
   text-align: center;
 }
+
 .contact-form-section h2 {
   font-size: 2.5rem;
   margin-bottom: 12px;

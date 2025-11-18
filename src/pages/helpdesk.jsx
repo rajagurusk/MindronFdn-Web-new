@@ -7,29 +7,50 @@ const Helpdesk = () => {
     name: "",
     phone: "",
     email: "",
-    inquiryType: "",
-    subject: "",
-    message: "",
-    howHeard: "",
-    notRobot: false,
+    type: "",
+    orgName: "",
+    enquiry: "",
   });
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Form submitted!");
+    setStatus("");
+    try {
+      const response = await fetch("http://localhost:5000/helpdesk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setStatus(data.message);
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          type: "",
+          orgName: "",
+          enquiry: "",
+        });
+      } else {
+        setStatus(data.error || "Submission failed.");
+      }
+    } catch {
+      setStatus("Error connecting to server.");
+    }
   };
 
   return (
     <div className="helpdesk-page">
-      {/* Removed helpdesk-header-img */}
       <div className="helpdesk-container">
         <form className="helpdesk-form" onSubmit={handleSubmit}>
           <h2>Enquiry</h2>
@@ -60,59 +81,35 @@ const Helpdesk = () => {
             required
           />
           <select
-            name="inquiryType"
-            value={form.inquiryType}
+            name="type"
+            value={form.type}
             onChange={handleChange}
             required
           >
-            <option value="">Select One</option>
-            <option value="general">General Inquiry</option>
-            <option value="donation">Donation</option>
-            <option value="volunteering">Volunteering</option>
+            <option value="">Select Type</option>
+            <option value="Company">Company</option>
+            <option value="Organization">Organization</option>
+            <option value="Charity Trust">Charity Trust</option>
           </select>
           <input
             type="text"
-            name="subject"
-            placeholder=""
-            value={form.subject}
+            name="orgName"
+            placeholder="Name of the company/org/charity"
+            value={form.orgName}
             onChange={handleChange}
+            required
           />
           <textarea
-            name="message"
-            placeholder="I have a question to ask you regarding your charity"
-            value={form.message}
+            name="enquiry"
+            placeholder="Enquiry Regarding"
+            value={form.enquiry}
             onChange={handleChange}
             required
           />
-          <select
-            name="howHeard"
-            value={form.howHeard}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select One</option>
-            <option value="friend">Friend</option>
-            <option value="social">Social Media</option>
-            <option value="ad">Advertisement</option>
-          </select>
-          <div className="helpdesk-recaptcha">
-            <input
-              type="checkbox"
-              name="notRobot"
-              checked={form.notRobot}
-              onChange={handleChange}
-              required
-            />
-            <span>I'm not a robot</span>
-            <img
-              src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
-              alt="reCaptcha"
-              className="helpdesk-captcha-img"
-            />
-          </div>
           <button type="submit" className="helpdesk-submit-btn">
             Submit
           </button>
+          {status && <div className="helpdesk-status-message">{status}</div>}
         </form>
       </div>
       <Footer />
@@ -121,4 +118,3 @@ const Helpdesk = () => {
 };
 
 export default Helpdesk;
-   
