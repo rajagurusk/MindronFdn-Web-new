@@ -109,7 +109,7 @@ function ContactForm() {
           <textarea name="message" placeholder="Your Message" rows={4} required value={form.message} onChange={handleChange} />
         </div>
         <div className="captcha-row" style={{ display: 'flex', justifyContent: 'center', margin: '18px 0' }}>
-          <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" ref={recaptchaRef} />
+          <ReCAPTCHA sitekey="6LdZcREsAAAAAKB7HcGIBmmqzmVEw2GfcZYYVxGY" ref={recaptchaRef} />
         </div>
         <button type="submit" className="submit-btn">Submit</button>
       </form>

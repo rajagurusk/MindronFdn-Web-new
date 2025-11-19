@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const Razorpay = require('razorpay');
+const crypto = require('crypto');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,7 +15,6 @@ app.use(bodyParser.json());
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://mindronfoundation:mindronfoundation@mindronfoundation.wbkepnb.mongodb.net/test';
-// -------------------------------------^ ensure "/test"
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -21,14 +22,14 @@ mongoose.connect(mongoURI, {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Subscriber Schema
+// Subscriber schema
 const subscriberSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   subscribedAt: { type: Date, default: Date.now }
 });
 const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
-// Contact Schema (for contact page)
+// Contact schema
 const contactSchema = new mongoose.Schema({
   fullname: String,
   email: String,
@@ -39,53 +40,93 @@ const contactSchema = new mongoose.Schema({
 });
 const Contact = mongoose.model('Contact', contactSchema);
 
-// Helpdesk Schema (for helpdesk page)
+// Helpdesk schema
 const helpdeskSchema = new mongoose.Schema({
   name: String,
   phone: String,
   email: String,
-  type: String,           // Company, Organization, Charity Trust
-  orgName: String,        // Name of the company/org/charity
-  enquiry: String,        // Enquiry Regarding
+  type: String,
+  orgName: String,
+  enquiry: String,
   sentAt: { type: Date, default: Date.now }
 });
 const Helpdesk = mongoose.model('Helpdesk', helpdeskSchema);
+
+// Donation schema
+const donationSchema = new mongoose.Schema({
+  fullName: String,
+  mobileNumber: String,
+  email: String,
+  address: String,
+  country: String,
+  pincode: String,
+  state: String,
+  city: String,
+  panNumber: String,
+  amount: Number,
+  termsAccepted: Boolean,
+  communicationConsent: Boolean,
+  razorpay_payment_id: String,
+  razorpay_order_id: String,
+  razorpay_signature: String,
+  paidAt: { type: Date, default: Date.now }
+});
+const Donation = mongoose.model('Donation', donationSchema);
 
 // Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'mindronfoundation@gmail.com',
-    pass: 'lizs xfhn xvee suhg' // Use your Gmail App Password
+    pass: 'lizs xfhn xvee suhg' // Your Gmail App Password
   }
 });
 
-// --- Subscriber Route
+// Razorpay setup: Replace with your actual test/live keys
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_RhV1cgoGg9eFDd',
+  key_secret: 'U1GQ5fx2Z3AeNoGMHnFOAUxD'
+});
+
+// --- Subscriber Route with custom welcome message
 app.post('/subscribe', async (req, res) => {
   const { email } = req.body;
   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (!email) return res.status(400).json({ error: 'Email is required' });
   if (!emailRegex.test(email)) return res.status(400).json({ error: 'Invalid email address' });
+
   try {
     const newSubscriber = new Subscriber({ email });
     await newSubscriber.save();
 
-    // Send thank-you email
+    // Custom welcome format
     const mailOptions = {
       from: '"Mindron Foundation" <mindronfoundation@gmail.com>',
       to: email,
-      subject: 'Thank you for subscribing!',
-      text: 'Thank you for subscribing to Mindron Foundation updates!',
-      html: '<h3>Thank you for subscribing to Mindron Foundation!</h3>'
+      subject: 'Welcome to Mindron Foundation!',
+      html: `
+        <p>Dear <b>${email}</b>,</p>
+        <p>
+          Thank you for joining the Mindron Foundation community!<br><br>
+          Your subscription helps us create and share valuable updates, initiatives, and opportunities to make a difference. We appreciate your support and commitment to our mission.<br><br>
+          You’ll be among the first to know about our latest projects, events, and ways you can get involved.<br><br>
+          If you have any questions or suggestions, feel free to reply to this email.<br><br>
+          Warm regards,<br>
+          Mindron Foundation Team
+        </p>
+      `
     };
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) console.error('Email not sent:', error);
-      else console.log('Thank you email sent:', info.response);
+      if (error)
+        console.error('Email not sent:', error);
+      else
+        console.log('Thank you email sent:', info.response);
     });
 
     res.status(201).json({ message: 'Subscribed successfully' });
   } catch (err) {
-    if (err.code === 11000) return res.status(409).json({ error: 'Email already subscribed' });
+    if (err.code === 11000)
+      return res.status(409).json({ error: 'Email already subscribed' });
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -165,6 +206,66 @@ app.post('/helpdesk', async (req, res) => {
     res.json({ message: 'Helpdesk enquiry sent successfully. We will contact you soon!' });
   } catch (err) {
     res.status(500).json({ error: 'Server error, please try again later.' });
+  }
+});
+
+// --- Razorpay: Create Order (for donation checkout)
+app.post('/donate/order', async (req, res) => {
+  const { amount } = req.body;
+  const options = {
+    amount: amount * 100, // in paise
+    currency: 'INR',
+    receipt: 'donation_' + Date.now()
+  };
+  try {
+    const order = await razorpay.orders.create(options);
+    res.json({ success: true, order });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error creating Razorpay order' });
+  }
+});
+
+// --- Razorpay: Verify & Save Donation (after payment) & Send Thank You Email
+app.post('/donate/verify', async (req, res) => {
+  const {
+    fullName, mobileNumber, email, address, country, pincode, state, city, panNumber, amount,
+    termsAccepted, communicationConsent,
+    razorpay_payment_id, razorpay_order_id, razorpay_signature
+  } = req.body;
+
+  const generatedSignature = crypto.createHmac('sha256', razorpay.key_secret)
+    .update(`${razorpay_order_id}|${razorpay_payment_id}`)
+    .digest('hex');
+
+  if (generatedSignature !== razorpay_signature) {
+    return res.status(400).json({ success: false, message: 'Invalid payment signature' });
+  }
+
+  try {
+    const donation = new Donation({
+      fullName, mobileNumber, email, address, country, pincode, state, city, panNumber, amount,
+      termsAccepted, communicationConsent,
+      razorpay_payment_id, razorpay_order_id, razorpay_signature
+    });
+    await donation.save();
+
+    const mailOptions = {
+      from: '"Mindron Foundation" <mindronfoundation@gmail.com>',
+      to: email,
+      subject: 'Thank you for your donation!',
+      html: `
+        <h2>Thank You for Donating!</h2>
+        <p><b>Amount:</b> ₹${amount}</p>
+        <p><b>Name:</b> ${fullName}</p>
+        <p><b>Order ID:</b> ${razorpay_order_id}</p>
+        <p>We appreciate your support.<br>Mindron Foundation</p>
+      `
+    };
+    await transporter.sendMail(mailOptions);
+
+    res.json({ success: true, message: 'Donation recorded and thank you email sent!' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server error saving donation' });
   }
 });
 

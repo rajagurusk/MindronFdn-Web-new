@@ -27,7 +27,7 @@ export default function AboutUs() {
         </p>
       </section>
       
-      {/* MISSION, ACHIEVEMENTS, VISION - reduced margin below */}
+      {/* MISSION, ACHIEVEMENTS, VISION */}
       <section className="aboutus-mva">
         <div className="aboutus-grid">
           <article className="aboutus-card">
@@ -53,7 +53,7 @@ export default function AboutUs() {
         </div>
       </section>
       
-      {/* LEADER’S MESSAGE - reduced margin above */}
+      {/* LEADER’S MESSAGE - updated for 3 boxes */}
       <section className="aboutus-leaders">
         <h2>Leader’s Message</h2>
         <div className="aboutus-leader-row">
@@ -63,7 +63,7 @@ export default function AboutUs() {
             </div>
             <div>
               <h3>CEO’s Message</h3>
-              <p className="name">Name Surname</p>
+              <p className="name">Ankit Sharma</p>
               <p className="role">Chief Executive Officer</p>
               <p>Our mission is driven by compassion and measurable outcomes, ensuring each initiative uplifts communities with dignity and opportunity.</p>
               <p>Collaboration and accountability guide every program we deliver for lasting, people‑first impact.</p>
@@ -75,10 +75,22 @@ export default function AboutUs() {
             </div>
             <div>
               <h3>Director’s Message</h3>
-              <p className="name">Name Surname</p>
-              <p className="role">Program Director</p>
+              <p className="name">Sujin Krishnan</p>
+              <p className="role">Director</p>
               <p>We focus on education, healthcare, and livelihoods, building capacity with transparent execution and community stewardship.</p>
               <p>Thank you to partners and volunteers whose support turns plans into real‑world outcomes.</p>
+            </div>
+          </div>
+          <div className="aboutus-leader-card">
+            <div className="aboutus-leader-img">
+              <img src="/images/leader-manager.jpg" alt="Program Manager" />
+            </div>
+            <div>
+              <h3>Director’s Message</h3>
+              <p className="name">Rohit Vijay Bhanushali</p>
+              <p className="role">Director</p>
+              <p>Focused on operational excellence, program delivery, and stakeholder engagement to ensure mission success.</p>
+              <p>Committed to driving community impact through on-the-ground leadership and collaboration.</p>
             </div>
           </div>
         </div>
