@@ -1,7 +1,48 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import "./styles/donate.css";
+
+// All 28 Indian states
+const indianStates = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+  "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan",
+  "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh",
+  "Uttarakhand", "West Bengal"
+];
+
+// Sample city lists for demo purposes
+const citiesByState = {
+  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore"],
+  "Arunachal Pradesh": ["Itanagar", "Naharlagun", "Tawang"],
+  "Assam": ["Guwahati", "Dibrugarh", "Silchar"],
+  "Bihar": ["Patna", "Gaya", "Muzaffarpur"],
+  "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur"],
+  "Goa": ["Panaji", "Margao", "Vasco da Gama"],
+  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+  "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala"],
+  "Himachal Pradesh": ["Shimla", "Dharamshala", "Manali"],
+  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad"],
+  "Karnataka": ["Bengaluru", "Mysuru", "Mangalore"],
+  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode"],
+  "Madhya Pradesh": ["Bhopal", "Indore", "Jabalpur", "Gwalior"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+  "Manipur": ["Imphal", "Thoubal"],
+  "Meghalaya": ["Shillong", "Tura"],
+  "Mizoram": ["Aizawl", "Lunglei"],
+  "Nagaland": ["Kohima", "Dimapur"],
+  "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela"],
+  "Punjab": ["Ludhiana", "Amritsar", "Jalandhar"],
+  "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur"],
+  "Sikkim": ["Gangtok", "Namchi"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+  "Telangana": ["Hyderabad", "Warangal"],
+  "Tripura": ["Agartala", "Udaipur"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+  "Uttarakhand": ["Dehradun", "Haridwar"],
+  "West Bengal": ["Kolkata", "Siliguri", "Durgapur"]
+};
 
 function Donate() {
   const [form, setForm] = useState({
@@ -22,13 +63,18 @@ function Donate() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+
+    if (name === "state") {
+      const firstCity = citiesByState[value]?.[0] || "";
+      setForm({ ...form, state: value, city: firstCity });
+    } else {
+      setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+    }
   };
 
   const handleDonateNow = async (e) => {
     e.preventDefault();
 
-    // Basic validation (can expand)
     if (
       !form.fullName ||
       !form.email ||
@@ -46,7 +92,6 @@ function Donate() {
     setStatus("Processing payment...");
 
     try {
-      // Step 1: Create Razorpay Order
       const orderRes = await axios.post(
         "http://localhost:5000/donate/order",
         { amount: form.amount }
@@ -57,16 +102,14 @@ function Donate() {
         return;
       }
 
-      // Step 2: Open Razorpay Checkout
       const options = {
-        key: "YOUR_RAZORPAY_KEY_ID", // replace with real key
+        key: "rzp_test_RhwLFisI1L3Idw",
         amount: orderRes.data.order.amount,
         currency: "INR",
         name: "Mindron Foundation",
         description: "Donation",
         order_id: orderRes.data.order.id,
         handler: async function (response) {
-          // Step 3: Save donation to backend after payment
           const saveRes = await axios.post(
             "http://localhost:5000/donate/verify",
             {
@@ -124,7 +167,7 @@ function Donate() {
         <div className="form-row">
           <div>
             <label>Country</label>
-            <select name="country" value={form.country} onChange={handleChange}>
+            <select name="country" value="India" disabled>
               <option>India</option>
             </select>
           </div>
@@ -137,8 +180,9 @@ function Donate() {
           <div>
             <label>State</label>
             <select name="state" value={form.state} onChange={handleChange}>
-              <option>Maharashtra</option>
-              {/* Add other states as needed */}
+              {indianStates.map((state) => (
+                <option key={state} value={state}>{state}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -150,8 +194,9 @@ function Donate() {
           <div>
             <label>City</label>
             <select name="city" value={form.city} onChange={handleChange}>
-              <option>Mumbai</option>
-              {/* Add other cities as needed */}
+              {citiesByState[form.state]?.map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -172,7 +217,7 @@ function Donate() {
         <div className="donate-footer">
           <p>Your contributions are eligible for up to 50% tax benefit under Section 80G, as Mindron Foundation is registered as a non-profit organization.</p>
           <div className="payment-icons">
-            <span>RuPay</span> <span>UPI</span> <span>VISA</span> <span>Mastercard</span>
+            <img src="/public/images/donateimg.jpg" alt="Supported Payment Methods" style={{ maxWidth: "250px", height: "auto" }} />
           </div>
         </div>
         <button className="donate-btn" type="submit">DONATE NOW</button>

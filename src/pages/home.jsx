@@ -182,7 +182,7 @@ export default function Home() {
             onChange={e => setEmail(e.target.value)}
             required
           />
-          <button type="submit" className="home-send-btn">Send</button>
+          <button type="submit" className="home-send-btn">Subscribe</button>
         </form>
         {message && <p className="subscribe-message">{message}</p>}
       </section>

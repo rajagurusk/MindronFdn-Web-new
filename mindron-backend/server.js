@@ -84,8 +84,8 @@ const transporter = nodemailer.createTransport({
 
 // Razorpay setup: Replace with your actual test/live keys
 const razorpay = new Razorpay({
-  key_id: 'rzp_test_RhV1cgoGg9eFDd',
-  key_secret: 'U1GQ5fx2Z3AeNoGMHnFOAUxD'
+  key_id: 'rzp_test_RhwLFisI1L3Idw',
+  key_secret: 'wwnFORSzbK6Do6xMRI7lcyqN'
 });
 
 // --- Subscriber Route with custom welcome message
