@@ -28,7 +28,7 @@ function Footer() {
           <div className="footer-contact-info">
             <span className="footer-bold">Address 1:</span> D-218, Agra Road Industrial Premises, Amrut Nagar, Behind R City Mall, Ghatkopar(west), Mumbai-400086.<br /><br />
             <span className="footer-bold">Address 2:</span> Office no. 404, 4th floor, Mukut Tower, Kursi Rd, Sector 2, Vikas nagar, Lucknow, Uttar Pradesh 226022.<br /><br />
-            <span className="footer-bold">Phone no:</span> +91 xxxxxxxxxx/xxxxxxxxxx/xxxxxxxxxx<br />
+            <span className="footer-bold">Phone no:</span> +91 8655972632/8056563493/9819866872<br />
             <span className="footer-bold">Gmail:</span> mindronfoundation@gmail.com<br />
             <span>Mon/Sat - 10:00/6:00</span>
           </div>
