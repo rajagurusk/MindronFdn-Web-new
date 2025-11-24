@@ -280,19 +280,52 @@
 }
 
 /* SUBSCRIBE FORM */
+.latest-update-container {
+  margin: 40px auto 20px auto;
+  max-width: 950px;
+  width: 97%;
+}
+.latest-update-title {
+  color: #255685;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.latest-update-box {
+  background: #f6faff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(6,33,57,0.07);
+  margin: 0 auto;
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 34px;
+  margin-bottom: 10px;
+}
+.coming-soon-msg {
+  color: #265b90;
+  font-size: 1.2rem;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subscribe-desc {
+  color: #315d85;
+  font-size: 1.09em;
+  margin-top: 6px;
+  text-align: center;
+}
 .home-subscribe-row {
-  margin: 39px auto 2px auto;
+  margin: 18px auto 2px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-}
-.subscribe-label {
-  font-size: 1.12rem;
-  color: #226085;
-  margin-right: 10px;
-  font-weight: 500;
 }
 .home-subscribe-row input[type="email"] {
   font-size: 1.1rem;
@@ -302,7 +335,6 @@
   outline: none;
   background: #f4faf7;
   min-width: 220px;
-  margin-right: 8px;
 }
 .home-send-btn {
   background: #87bb65;
@@ -316,6 +348,12 @@
   transition: background 0.14s;
 }
 .home-send-btn:hover { background: #7ba65c; }
+.subscribe-message {
+  color: #267a2e;
+  margin: 8px 0 0 0;
+  font-size: 1.12em;
+}
+
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 950px) {

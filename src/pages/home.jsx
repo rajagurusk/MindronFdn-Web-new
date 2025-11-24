@@ -45,15 +45,15 @@ export default function Home() {
         <img src="/images/hero.jpg" alt="Hero Banner" />
       </div>
 
-      {/* ABOUT US */}
+      {/* Who We Are */}
       <section className="home-about">
         <div className="home-about-text">
           <h2>
             <span className="about-underline" />
-            About Us
+            Who We Are
           </h2>
           <p>
-            At <strong>Foundation Mind</strong>, we believe that compassion is the most powerful form of luxury. Founded with a vision to uplift underserved communities through dignity, care, and opportunity, our mission blends heartfelt service with refined execution.
+            At <strong>Mindron Foundation</strong>, we believe that compassion is the most powerful form of luxury. Founded with a vision to uplift underserved communities through dignity, care, and opportunity, our mission blends heartfelt service with refined execution.
           </p>
           <p>
             We focus on sustainable impact—whether it’s providing education to bright young minds, supporting women’s empowerment, or delivering healthcare with humanity. Every initiative is guided by empathy, transparency, and a commitment to excellence.
@@ -134,58 +134,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LATEST UPDATES + SUBSCRIBE FORM */}
-      <section className="home-updates">
-        <h4 className="home-updates-title">Latest Updates</h4>
-        <div className="home-updates-row">
-          <div className="home-updates-card">
-            <div className="updates-circle-img">
-              <img src="/images/latest1.jpg" alt="Update 1" />
-            </div>
-            <div className="updates-desc">
-              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-            </div>
-          </div>
-          <div className="home-updates-card">
-            <div className="updates-circle-img">
-              <img src="/images/latest2.jpg" alt="Update 2" />
-            </div>
-            <div className="updates-desc">
-              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-            </div>
-          </div>
-          <div className="home-updates-card">
-            <div className="updates-circle-img">
-              <img src="/images/latest3.jpg" alt="Update 3" />
-            </div>
-            <div className="updates-desc">
-              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-            </div>
-          </div>
-          <div className="home-updates-card">
-            <div className="updates-circle-img">
-              <img src="/images/latest4.jpg" alt="Update 4" />
-            </div>
-            <div className="updates-desc">
-              Mindron Foundation is a non-profit organization dedicated to improving healthcare access and wellness for communities in need
-            </div>
-          </div>
-        </div>
-        <form className="home-subscribe-row" onSubmit={handleSubscribeSubmit}>
-          <span className="subscribe-label">
-            Subscribe now to keep up with our latest developments
-          </span>
-          <input
-            type="email"
-            placeholder="Enter Your Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit" className="home-send-btn">Subscribe</button>
-        </form>
-        {message && <p className="subscribe-message">{message}</p>}
-      </section>
+     {/* LATEST UPDATES + SUBSCRIBE FORM */}
+<section className="latest-update-container">
+  <h2 className="latest-update-title">Latest Updates</h2>
+  <div className="latest-update-box">
+    <div className="coming-soon-msg">
+      <span role="img" aria-label="Bell" style={{ fontSize: 24, marginRight: 9 }}>🔔</span>
+      <span style={{ fontWeight: 700, fontSize: "1.4em" }}>Coming Soon</span>
+    </div>
+    <div className="subscribe-desc">
+      Stay tuned! Exciting updates will be posted here.<br />
+      Want to be notified? Subscribe now to keep up with our latest developments.
+    </div>
+    <form className="home-subscribe-row" onSubmit={handleSubscribeSubmit}>
+      <input
+        type="email"
+        placeholder="Enter Your Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      />
+      <button type="submit" className="home-send-btn">Subscribe</button>
+    </form>
+    {message && <p className="subscribe-message">{message}</p>}
+  </div>
+</section>
+
 
       <Footer />
     </div>

@@ -50,7 +50,7 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.linkedin.com/company/mindron-foundation/" target="_blank" rel="noopener noreferrer">
                 <img src="/public/images/linkdin.jpg" alt="LinkedIn" className="social-icon" />
                 LinkedIn
               </a>

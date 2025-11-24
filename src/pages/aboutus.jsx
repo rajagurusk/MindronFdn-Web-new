@@ -12,9 +12,9 @@ export default function AboutUs() {
       
       {/* WHO WE ARE SECTION */}
       <section className="aboutus-whoarewe">
-        <h1>Who We Are</h1>
+        <h1>About Us</h1>
         <p>
-          At [Foundation Name], we believe that compassion is the most powerful form of luxury—a force capable of transforming lives and inspiring hope. Founded with a heartfelt vision to uplift underserved communities, we stand committed to bringing dignity, care, and opportunity to every individual we serve.
+          At <strong>Mindron Foundation</strong>, we believe that compassion is the most powerful form of luxury—a force capable of transforming lives and inspiring hope. Founded with a heartfelt vision to uplift underserved communities, we stand committed to bringing dignity, care, and opportunity to every individual we serve.
         </p>
         <p>
           Our mission is simple yet profound: to blend human kindness with purposeful action. Through thoughtful initiatives and sustainable programs, we strive to build a world where generosity meets grace, and every act of giving carries meaning.
