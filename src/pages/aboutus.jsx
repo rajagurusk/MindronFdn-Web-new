@@ -62,9 +62,9 @@ export default function AboutUs() {
               <img src="/images/leader-ceo.jpg" alt="CEO" />
             </div>
             <div>
-              <h3>CEO’s Message</h3>
+              <h3>President's Message</h3>
               <p className="name">Ankit Sharma</p>
-              <p className="role">Chief Executive Officer</p>
+              <p className="role">President</p>
               <p>Our mission is driven by compassion and measurable outcomes, ensuring each initiative uplifts communities with dignity and opportunity.</p>
               <p>Collaboration and accountability guide every program we deliver for lasting, people‑first impact.</p>
             </div>
@@ -74,9 +74,9 @@ export default function AboutUs() {
               <img src="/images/leader-director.jpg" alt="Director" />
             </div>
             <div>
-              <h3>Director’s Message</h3>
+              <h3>Chairperson's Message</h3>
               <p className="name">Sujin Krishnan</p>
-              <p className="role">Director</p>
+              <p className="role">Chairperson</p>
               <p>We focus on education, healthcare, and livelihoods, building capacity with transparent execution and community stewardship.</p>
               <p>Thank you to partners and volunteers whose support turns plans into real‑world outcomes.</p>
             </div>
@@ -86,9 +86,9 @@ export default function AboutUs() {
               <img src="/images/leader-manager.jpg" alt="Program Manager" />
             </div>
             <div>
-              <h3>Director’s Message</h3>
+              <h3>Chairperson's Message</h3>
               <p className="name">Rohit Vijay Bhanushali</p>
-              <p className="role">Director</p>
+              <p className="role">Chairperson</p>
               <p>Focused on operational excellence, program delivery, and stakeholder engagement to ensure mission success.</p>
               <p>Committed to driving community impact through on-the-ground leadership and collaboration.</p>
             </div>
