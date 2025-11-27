@@ -94,7 +94,7 @@ const Helpdesk = () => {
           <input
             type="text"
             name="orgName"
-            placeholder="Name of the company/org/charity"
+            placeholder="Name of the Company/Org/Charity"
             value={form.orgName}
             onChange={handleChange}
             required
@@ -102,7 +102,7 @@ const Helpdesk = () => {
           <textarea
             name="enquiry"
             placeholder="Enquiry Regarding"
-            value={form.enquiry}
+            value={form.enquiry}S
             onChange={handleChange}
             required
           />
