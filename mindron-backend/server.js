@@ -99,7 +99,6 @@ app.post('/subscribe', async (req, res) => {
     const newSubscriber = new Subscriber({ email });
     await newSubscriber.save();
 
-    // Custom welcome format
     const mailOptions = {
       from: '"Mindron Foundation" <mindronfoundation@gmail.com>',
       to: email,
@@ -272,6 +271,7 @@ app.post('/donate/verify', async (req, res) => {
 app.get('/', (req, res) => {
   res.send('Mindron Foundation Backend Running!');
 });
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
