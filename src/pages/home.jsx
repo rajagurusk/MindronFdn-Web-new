@@ -53,13 +53,13 @@ export default function Home() {
             Who We Are
           </h2>
           <p>
-            At <strong>Mindron Foundation</strong>, we believe that compassion is the most powerful form of luxury. Founded with a vision to uplift underserved communities through dignity, care, and opportunity, our mission blends heartfelt service with refined execution.
+            At <strong>Mindron Foundation</strong>, compassion and curiosity come together to unlock human potential. Founded to support learners and communities with meaningful opportunities, we create pathways where knowledge, technology, and care work hand in hand to change lives
           </p>
           <p>
-            We focus on sustainable impact—whether it’s providing education to bright young minds, supporting women’s empowerment, or delivering healthcare with humanity. Every initiative is guided by empathy, transparency, and a commitment to excellence.
+            Our work is guided by empathy, transparency, and excellence. We collaborate with schools, NGOs, and local partners to bring workshops, digital resources, and skill-building programs to underserved communities, ensuring that no child’s potential is limited by circumstance
           </p>
           <p>
-            Our foundation is built on the belief that giving should feel beautiful—because when generosity meets intention, it creates lasting change.
+          At our core, we believe that a single empowered mind can uplift an entire community. When thoughtful technology meets genuine care, learning becomes more than just marks and exams—it becomes a bridge to dignity, confidence, and long-term opportunity.
           </p>
         </div>
         <div className="home-about-photo">

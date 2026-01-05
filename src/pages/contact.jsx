@@ -1,3 +1,4 @@
+// ContactPage.jsx
 import "./styles/contact.css";
 import Footer from "../components/footer.jsx";
 import React, { useRef, useState } from "react";
@@ -45,30 +46,16 @@ function OfficesSection() {
   ];
 
   function renderContacts(office) {
-    // Special logic for USA and Hong Kong contact layout
-    if (office.title === "USA–New York") {
+    if (office.title === "USA–New York" || office.title === "Hong Kong") {
       return (
         <span className="office-value">
           {office.contacts.slice(0, 2).join(", ")}
           <br />
           {office.contacts.length > 2 ? office.contacts.slice(2).join(", ") : null}
-        </span>
-      );
-    } else if (office.title === "Hong Kong") {
-      return (
-        <span className="office-value">
-          {office.contacts.slice(0, 2).join(", ")}
-          <br />
-          {office.contacts.length > 2 ? office.contacts.slice(2).join(", ") : null}
-        </span>
-      );
-    } else {
-      return (
-        <span className="office-value">
-          {office.contacts.join(", ")}
         </span>
       );
     }
+    return <span className="office-value">{office.contacts.join(", ")}</span>;
   }
 
   return (
@@ -110,13 +97,6 @@ function ContactForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("");
-
-    // Optional: You can verify reCAPTCHA here before sending data to backend
-    // const recaptchaValue = recaptchaRef.current.getValue();
-    // if (!recaptchaValue) {
-    //   setStatus('Please complete the reCAPTCHA.');
-    //   return;
-    // }
 
     try {
       const response = await fetch("http://localhost:5000/contact", {
@@ -198,10 +178,7 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
-        <div
-          className="captcha-row"
-          style={{ display: "flex", justifyContent: "center", margin: "18px 0" }}
-        >
+        <div className="captcha-row">
           <ReCAPTCHA
             sitekey="6LdZcREsAAAAAKB7HcGIBmmqzmVEw2GfcZYYVxGY"
             ref={recaptchaRef}
@@ -220,10 +197,14 @@ function ContactForm() {
 
 export default function ContactPage() {
   return (
-    <div>
-      <OfficesSection />
-      <ContactForm />
-      <Footer />
+    <div className="contact-page">
+      <div className="contact-page-inner">
+        <div className="contact-layout">
+          <OfficesSection />
+          <ContactForm />
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }

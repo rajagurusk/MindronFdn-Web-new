@@ -17,10 +17,11 @@
   gap: 54px;
   flex-wrap: wrap;
 }
+
 /* HERO */
 .home-hero-img {
   width: 100%;
-  max-height: 650px; /* Increased from 400px */
+  max-height: 650px;
   overflow: hidden;
   background: #eee;
   display: flex;
@@ -31,9 +32,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  max-height: 650px; /* Increased from 400px */
+  max-height: 650px;
 }
-
 
 /* ABOUT US */
 .home-about {
@@ -75,7 +75,6 @@
   margin-right: 16px;
   margin-bottom: 13px;
 }
-/* UPDATED: For matching "Who We Are" heading and paragraph style */
 .home-about-text h2 {
   font-size: 2.6rem;
   color: #15487a;
@@ -181,14 +180,12 @@
   align-items: center;
 }
 .home-story-box img {
-  width: 240px;      /* Rectangle width */
-  height: 150px;     /* Rectangle height */
-  border-radius: 12px;   /* Optional: Rounded corners. Use 0 for sharp edges */
+  width: 240px;
+  height: 150px;
+  border-radius: 12px;
   margin-bottom: 13px;
   object-fit: cover;
 }
-
-
 .home-story-box h5 {
   font-size: 1.37rem;
   color: #15487a;
@@ -319,13 +316,15 @@
   margin-top: 6px;
   text-align: center;
 }
+
+/* input + button in same row on larger screens */
 .home-subscribe-row {
   margin: 18px auto 2px auto;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .home-subscribe-row input[type="email"] {
   font-size: 1.1rem;
@@ -334,26 +333,29 @@
   padding: 12px 16px;
   outline: none;
   background: #f4faf7;
-  min-width: 220px;
+  min-width: 260px;
 }
+
+/* Button slightly higher than input */
 .home-send-btn {
   background: #87bb65;
   color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
-  padding: 11px 28px;
+  padding: 9px 28px;      /* was 11px 28px */
   cursor: pointer;
   font-weight: 600;
   transition: background 0.14s;
+  margin-top: -3px;       /* lift button a bit */
 }
 .home-send-btn:hover { background: #7ba65c; }
+
 .subscribe-message {
   color: #267a2e;
   margin: 8px 0 0 0;
   font-size: 1.12em;
 }
-
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 950px) {
@@ -368,6 +370,7 @@
     padding-right: 0;
   }
 }
+
 @media (max-width: 700px) {
   .home-stats-row,
   .home-success-row,
@@ -388,6 +391,15 @@
   }
   .home-about-photo img { width: 120px; height: 120px; }
 }
+
+/* allow wrapping of input + button on very small screens */
+@media (max-width: 600px) {
+  .home-subscribe-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 640px) {
   .home-hero-img { max-height: 130px; min-height: 90px; }
   .home-hero-img img { max-height: 130px; }
@@ -408,6 +420,7 @@
     font-size: 1.16rem;
   }
 }
+
 @media (max-width: 500px) {
   .home-stats, .home-success, .home-updates {
     padding: 7px 1vw !important;

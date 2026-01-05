@@ -1,4 +1,5 @@
-import React from "react";
+  
+  import React from "react";
 import Footer from "../components/footer.jsx";
 import "./styles/aboutus.css";
 
@@ -14,16 +15,16 @@ export default function AboutUs() {
       <section className="aboutus-whoarewe">
         <h1>About Us</h1>
         <p>
-          At <strong>Mindron Foundation</strong>, we believe that compassion is the most powerful form of luxury—a force capable of transforming lives and inspiring hope. Founded with a heartfelt vision to uplift underserved communities, we stand committed to bringing dignity, care, and opportunity to every individual we serve.
+          At <strong>Mindron Foundation</strong>, every initiative begins with a simple belief: when minds are nurtured, communities flourish. Established to make quality learning and personal growth accessible to all, we combine innovative tools, compassionate outreach, and strong partnerships to create real, measurable change.
         </p>
         <p>
-          Our mission is simple yet profound: to blend human kindness with purposeful action. Through thoughtful initiatives and sustainable programs, we strive to build a world where generosity meets grace, and every act of giving carries meaning.
+         Mindron Foundation works at the intersection of education, technology, and social impact. From visual learning tools like mind maps to on-ground programs in schools and communities, our efforts are designed to help students think clearly, learn confidently, and dream boldly. We collaborate with educators, NGOs, and volunteers to ensure that our solutions are practical, language-friendly, and rooted in local realities.
         </p>
         <p>
-          We focus on creating long-term, sustainable impact—whether it’s empowering women to become independent change-makers, nurturing the dreams of young students through education, or extending compassionate healthcare to those in need. Every effort we make is guided by empathy, integrity, and excellence, ensuring that our work not only touches lives today but also builds a brighter tomorrow.
+         Our programs focus on underserved and under-resourced learners—children in low-income schools, first-generation students, and young people who often lack structured academic support. Through free workshops, digital resources, and mentoring, we aim to bridge learning gaps and build the skills needed for both exams and life.
         </p>
         <p>
-          At the heart of our foundation lies a belief that giving should feel beautiful. Because when generosity is guided by intention and compassion is expressed through action, it creates ripples of change that reach far beyond boundaries. Together, we are not just helping communities—we are helping humanity rediscover the true meaning of care.
+          Behind Mindron Foundation is a diverse team of educators, technologists, and community champions united by a shared purpose: to turn information into understanding and potential into progress. Together, we are building a future where every learner has the tools, guidance, and confidence to design their own success story.
         </p>
       </section>
       
@@ -33,8 +34,8 @@ export default function AboutUs() {
           <article className="aboutus-card">
             <h3>Our Mission</h3>
             <p>
-              Drive equitable access to opportunities by enabling learning, wellness, and livelihoods across underserved regions.
-            </p>
+              Empower underserved communities by expanding access to learning, wellness, and sustainable livelihoods in every region we serve.
+          </p>
           </article>
           <article className="aboutus-card">
             <h3>Our Achievements</h3>
@@ -47,7 +48,7 @@ export default function AboutUs() {
           <article className="aboutus-card">
             <h3>Our Vision</h3>
             <p>
-              A world where every individual has the resources and support to thrive with dignity and purpose.
+              A world where every individual, regardless of background, has the knowledge, health, and livelihood support needed to live with dignity and purpose.
             </p>
           </article>
         </div>
@@ -65,8 +66,10 @@ export default function AboutUs() {
               <h3>President's Message</h3>
               <p className="name">Ankit Sharma</p>
               <p className="role">President</p>
-              <p>Our mission is driven by compassion and measurable outcomes, ensuring each initiative uplifts communities with dignity and opportunity.</p>
-              <p>Collaboration and accountability guide every program we deliver for lasting, people‑first impact.</p>
+              <p>At Mindron Foundation, our mission is to turn compassion into measurable change.</p>
+              <p>Every initiative we support is designed to protect dignity, expand opportunity, and leave a lasting, positive mark on the communities we serve.
+
+</p>
             </div>
           </div>
           <div className="aboutus-leader-card">
@@ -77,8 +80,8 @@ export default function AboutUs() {
               <h3>Chairperson's Message</h3>
               <p className="name">Sujin Krishnan</p>
               <p className="role">Chairperson</p>
-              <p>We focus on education, healthcare, and livelihoods, building capacity with transparent execution and community stewardship.</p>
-              <p>Thank you to partners and volunteers whose support turns plans into real‑world outcomes.</p>
+              <p>Mindron Foundation focuses on education, healthcare, and livelihoods so communities can grow stronger from within.</p>
+              <p>With transparent execution and community partnerships, we turn ideas into real outcomes for people who need them most.</p>
             </div>
           </div>
           <div className="aboutus-leader-card">
@@ -89,8 +92,8 @@ export default function AboutUs() {
               <h3>Chairperson's Message</h3>
               <p className="name">Rohit Vijay Bhanushali</p>
               <p className="role">Chairperson</p>
-              <p>Focused on operational excellence, program delivery, and stakeholder engagement to ensure mission success.</p>
-              <p>Committed to driving community impact through on-the-ground leadership and collaboration.</p>
+              <p>Our priority is operational excellence and effective program delivery, so every effort contributes directly to mission success.</p>
+              <p> By working closely with stakeholders and communities, we drive meaningful, on-the-ground impact through collaboration and leadership.</p>
             </div>
           </div>
         </div>

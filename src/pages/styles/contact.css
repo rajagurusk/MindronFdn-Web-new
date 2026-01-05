@@ -1,90 +1,110 @@
-/* Office Section */
+/* Whole page background */
+.contact-page {
+  width: 100%;
+  background: #f5f7fb;
+}
+
+/* Fills viewport below header (adjust 80px to real header height) */
+.contact-page-inner {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Two main columns */
+.contact-layout {
+  max-width: 1380px;              /* wider so columns touch nav edges more */
+  margin: 40px auto 60px auto;
+  display: flex;
+  gap: 20px;                      /* slightly smaller gap */
+  align-items: stretch;           /* same visual height */
+  flex: 1;                        /* grow to take available height */
+}
+
+/* LEFT SIDE: 4 address cards */
 .offices-section {
-  width: 93%;
-  max-width: 1200px;
-  margin: 40px auto 0 auto;
+  flex: 1.5;                      /* more space for addresses */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 24px 0;
+  gap: 18px;
 }
+
 .office-card {
-  width: 47%;
+  flex: 1 1 calc(50% - 9px);      /* 2 cards per row, can grow */
   background: #fff;
   border-radius: 11px;
   box-shadow: 0 3px 16px rgba(0,0,0,0.07);
-  padding: 17px 22px 15px 22px;
+  padding: 24px 26px 22px 26px;   /* more inner space */
   box-sizing: border-box;
-  margin-bottom: 18px;
 }
+
+/* title bigger */
 .office-card h4 {
   font-weight: 700;
   color: #195c95;
-  font-size: 1.13em;
-  margin: 8px 0 10px 0;
+  font-size: 1.25rem;             /* was 1.13em */
+  margin: 8px 0 12px 0;
 }
-.map-img {
-  width: 100%;
-  max-width: 310px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 12px;
-}
+
+/* labels bigger */
 .office-label {
   font-weight: 700;
   color: #105a94;
-  font-size: 1em;
-  display: inline;
+  font-size: 1.05rem;
 }
-.office-value, .office-address {
+
+/* values & address bigger */
+.office-value,
+.office-address {
   color: #1b3055;
-  font-size: 1em;
+  font-size: 1.03rem;
   font-weight: 400;
-  margin-bottom: 2px;
-  display: inline;
+  line-height: 1.5;
 }
+
 .office-address {
   font-weight: 600;
 }
 
-/* Contact Form Section */
+/* RIGHT SIDE: contact form box */
 .contact-form-section {
-  max-width: 600px;
-  margin: 0 auto;                   /* Center horizontally */
-  min-height: 70vh;                 /* Give enough height to center vertically */
+  flex: 0 0 38%;                  /* slightly wider form */
   display: flex;
   flex-direction: column;
-  justify-content: center;          /* Vertically center content */
-  align-items: center;              /* Horizontally center items */
+  justify-content: center;
+  align-items: center;            /* center content horizontally */
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  padding: 44px 36px 26px 36px;
+  padding: 40px 34px 32px 34px;   /* more padding so it feels balanced */
   text-align: center;
 }
 
 .contact-form-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+  font-size: 2.1rem;
+  margin-bottom: 10px;
   color: #175a8c;
   font-weight: 700;
   letter-spacing: 1px;
+  width: 100%;
+  text-align: center;             /* ensure heading text is centered */
 }
+
 .contact-form-section p {
   color: #2a5d85;
-  font-size: 1.08em;
-  margin-bottom: 23px;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
 }
+
 .contact-form {
   width: 100%;
-  margin: 0;
 }
+
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
-  font-size: 1em;
+  font-size: 1rem;
   padding: 12px;
   border: 1px solid #a6cbe1;
   border-radius: 6px;
@@ -93,35 +113,40 @@
   outline: none;
   transition: border 0.11s;
 }
+
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
   border-color: #175a8c;
 }
+
 .form-row {
-  margin-bottom: 0;
   display: flex;
   flex-direction: row;
   gap: 15px;
   width: 100%;
 }
+
 .form-row input[type="text"],
 .form-row input[type="email"] {
   width: 100%;
 }
+
 .contact-form textarea {
   min-height: 78px;
   resize: vertical;
   font-family: inherit;
 }
+
 .captcha-row {
   display: flex;
   justify-content: center;
   margin: 18px 0;
 }
+
 .submit-btn {
-  width: 170px;
-  font-size: 1.13em;
+  width: 180px;
+  font-size: 1.15em;
   font-weight: 600;
   padding: 11px 0;
   color: #fff;
@@ -133,24 +158,38 @@
   transition: background 0.19s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.07);
 }
+
 .submit-btn:hover {
   background: #60913e;
 }
 
-/* Responsive */
+/* Ensure footer sits at bottom when content is short */
+.contact-page-inner > footer,
+.contact-page-inner > .footer {
+  margin-top: auto;
+}
+
+/* Responsive: stack on small screens */
 @media (max-width: 900px) {
-  .offices-section {
+  .contact-layout {
     flex-direction: column;
-    gap: 0;
+    gap: 24px;
+    padding: 0 10px;
   }
+
+  .offices-section {
+    flex: 1;
+  }
+
   .office-card {
-    width: 100%;
-    margin-bottom: 20px;
+    flex: 1 0 100%;
   }
+
   .contact-form-section {
-    max-width: 98vw;
-    padding: 20px 8px;
+    flex: 1 0 auto;
+    max-width: 100%;
   }
+
   .form-row {
     flex-direction: column;
     gap: 11px;
