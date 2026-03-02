@@ -53,13 +53,13 @@ export default function Home() {
             Who We Are
           </h2>
           <p>
-            At <strong>Mindron Foundation</strong>, compassion and curiosity come together to unlock human potential. Founded to support learners and communities with meaningful opportunities, we create pathways where knowledge, technology, and care work hand in hand to change lives
+            At <strong>Mindron Foundation</strong>, compassion and curiosity come together to unlock human potential. Founded to support learners and communities with worthwhile opportunities, paving the way for knowledge, technology, and care work hand in hand to change lives.
           </p>
           <p>
-            Our work is guided by empathy, transparency, and excellence. We collaborate with schools, NGOs, and local partners to bring workshops, digital resources, and skill-building programs to underserved communities, ensuring that no child’s potential is limited by circumstance
+            Our work is driven by excellence, transparency, and empathy. To ensure that no child's potential is limited by circumstance, We collaborate with schools, NGOs, and local partners to bring workshops, digital resources, and skill-building programs to underprivileged communities.
           </p>
           <p>
-          At our core, we believe that a single empowered mind can uplift an entire community. When thoughtful technology meets genuine care, learning becomes more than just marks and exams—it becomes a bridge to dignity, confidence, and long-term opportunity.
+          Fundamentally, we think that one strong mind can elevate a whole community. When thoughtful technology meets genuine care, learning becomes more than just marks and exams—it becomes a bridge to long-term opportunity, dignity, and self-assurance.
           </p>
         </div>
         <div className="home-about-photo">
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="home-stats-row">
           <div className="home-stat-box">
             <img src="/images/stats1.jpg" alt="Public Health" />
-            <span className="home-stat-number">1,000+</span>
+            <span className="home-stat-number">50+</span>
             <span className="home-stat-label">public health initiatives</span>
           </div>
           <div className="home-stat-box">
@@ -86,12 +86,12 @@ export default function Home() {
           </div>
           <div className="home-stat-box">
             <img src="/images/stats3.jpg" alt="Volunteers" />
-            <span className="home-stat-number">300</span>
+            <span className="home-stat-number">300+</span>
             <span className="home-stat-label">volunteers</span>
           </div>
           <div className="home-stat-box">
             <img src="/images/stats4.jpg" alt="Donors" />
-            <span className="home-stat-number">50+</span>
+            <span className="home-stat-number">77+</span>
             <span className="home-stat-label">active donors</span>
           </div>
         </div>
@@ -100,6 +100,9 @@ export default function Home() {
             Every contribution, big or small, makes a difference.<br />
             Together, we can save lives and build a healthier tomorrow.
           </p>
+   
+   
+   
           <button
             className="home-donate-btn"
             onClick={() => navigate("/donate")}

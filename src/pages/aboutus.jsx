@@ -15,16 +15,16 @@ export default function AboutUs() {
       <section className="aboutus-whoarewe">
         <h1>About Us</h1>
         <p>
-          At <strong>Mindron Foundation</strong>, every initiative begins with a simple belief: when minds are nurtured, communities flourish. Established to make quality learning and personal growth accessible to all, we combine innovative tools, compassionate outreach, and strong partnerships to create real, measurable change.
+         At <strong>Mindron Foundation</strong>, every initiative begins with a simple belief: when minds are nurtured, communities flourish. Founded with the goal of ensuring that everyone has access to high-quality education and personal development, we combine innovative tools, compassionate outreach, and strong partnerships to create real, measurable change.
         </p>
         <p>
-         Mindron Foundation works at the intersection of education, technology, and social impact. From visual learning tools like mind maps to on-ground programs in schools and communities, our efforts are designed to help students think clearly, learn confidently, and dream boldly. We collaborate with educators, NGOs, and volunteers to ensure that our solutions are practical, language-friendly, and rooted in local realities.
+         Mindron Foundation works at the intersection of social impact, technology, and education. From visual learning tools like mind maps to on-ground programs in schools and communities, our efforts are designed to help students think clearly, learn confidently, and dream boldly. To make sure that our solutions are workable,  language-friendly, and grounded in local realities, we collaborate with educators, NGOs, and volunteers
         </p>
         <p>
-         Our programs focus on underserved and under-resourced learners—children in low-income schools, first-generation students, and young people who often lack structured academic support. Through free workshops, digital resources, and mentoring, we aim to bridge learning gaps and build the skills needed for both exams and life.
+        Children in low-income schools, first-generation students, and young people who frequently lack structured academic support are the targets of our programs because they are underprivileged and under-resourced. Through free workshops, digital resources, and mentoring, we aim to bridge learning gaps and build the skills needed for both exams and life.
         </p>
         <p>
-          Behind Mindron Foundation is a diverse team of educators, technologists, and community champions united by a shared purpose: to turn information into understanding and potential into progress. Together, we are building a future where every learner has the tools, guidance, and confidence to design their own success story.
+          A diverse group of educators, technologists, and community advocates work together at Mindron Foundation with the common goal of transforming information into knowledge into understanding and potential into progress. By working together, we are creating a future in which each student has the resources, direction, and self-assurance to create their own success story.
         </p>
       </section>
       
@@ -34,21 +34,21 @@ export default function AboutUs() {
           <article className="aboutus-card">
             <h3>Our Mission</h3>
             <p>
-              Empower underserved communities by expanding access to learning, wellness, and sustainable livelihoods in every region we serve.
+Empower underprivileged communities by increasing access to education, health care, and sustainable livelihoods in every region we serve.
           </p>
           </article>
           <article className="aboutus-card">
             <h3>Our Achievements</h3>
             <ul>
-              <li>10,000+ beneficiaries across programs</li>
-              <li>200+ community health camps conducted</li>
+              <li>1000+ beneficiaries across programs</li>
+              <li>50+ community health camps conducted</li>
               <li>100+ scholarships awarded annually</li>
             </ul>
           </article>
           <article className="aboutus-card">
             <h3>Our Vision</h3>
             <p>
-              A world where every individual, regardless of background, has the knowledge, health, and livelihood support needed to live with dignity and purpose.
+A society where every individual, regardless of background, have access to the information, healthcare, and means of subsistence necessary to live with dignity and purpose.
             </p>
           </article>
         </div>
@@ -66,8 +66,8 @@ export default function AboutUs() {
               <h3>President's Message</h3>
               <p className="name">Ankit Sharma</p>
               <p className="role">President</p>
-              <p>At Mindron Foundation, our mission is to turn compassion into measurable change.</p>
-              <p>Every initiative we support is designed to protect dignity, expand opportunity, and leave a lasting, positive mark on the communities we serve.
+              <p>At Mindron Foundation, we strive to turn compassion into action.</p>
+              <p>Our initiatives are designed to create opportunity, uphold dignity, and deliver sustainable impact for the communities we serve.
 
 </p>
             </div>
@@ -80,8 +80,8 @@ export default function AboutUs() {
               <h3>Chairperson's Message</h3>
               <p className="name">Sujin Krishnan</p>
               <p className="role">Chairperson</p>
-              <p>Mindron Foundation focuses on education, healthcare, and livelihoods so communities can grow stronger from within.</p>
-              <p>With transparent execution and community partnerships, we turn ideas into real outcomes for people who need them most.</p>
+              <p>At Mindron Foundation we focus on strengthening communities through education, healthcare, and livelihood initiatives.</p>
+              <p>With transparency and collaboration at our core, we work to ensure our efforts lead to meaningful, measurable outcomes.</p>
             </div>
           </div>
           <div className="aboutus-leader-card">
@@ -92,8 +92,8 @@ export default function AboutUs() {
               <h3>Chairperson's Message</h3>
               <p className="name">Rohit Vijay Bhanushali</p>
               <p className="role">Chairperson</p>
-              <p>Our priority is operational excellence and effective program delivery, so every effort contributes directly to mission success.</p>
-              <p> By working closely with stakeholders and communities, we drive meaningful, on-the-ground impact through collaboration and leadership.</p>
+              <p>Through operational excellence and strong community partnerships, we aim to drive sustainable, on-the-ground impact. </p>
+              <p>Every program we implement is aligned with our mission to create lasting positive change.</p>
             </div>
           </div>
         </div>

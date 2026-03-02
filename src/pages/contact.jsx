@@ -45,6 +45,12 @@ function OfficesSection() {
     },
   ];
 
+
+
+
+
+  
+
   function renderContacts(office) {
     if (office.title === "USA–New York" || office.title === "Hong Kong") {
       return (
@@ -126,8 +132,8 @@ function ContactForm() {
     <section className="contact-form-section">
       <h2>Contact Us</h2>
       <p>
-        We&apos;d Love to hear from you—whether it&apos;s a question,
-        suggestion, or a story you&apos;d like to share
+      Have a question, a bright idea, or a story close to your heart?
+      <p>Let’s start a conversation </p>
       </p>
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-row">
