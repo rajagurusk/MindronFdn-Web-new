@@ -1,8 +1,8 @@
-// ContactPage.jsx
 import "./styles/contact.css";
 import Footer from "../components/footer.jsx";
 import React, { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import API_URL from "../api";
 
 function OfficesSection() {
   const contactDetails = [
@@ -45,19 +45,15 @@ function OfficesSection() {
     },
   ];
 
-
-
-
-
-  
-
   function renderContacts(office) {
     if (office.title === "USA–New York" || office.title === "Hong Kong") {
       return (
         <span className="office-value">
           {office.contacts.slice(0, 2).join(", ")}
           <br />
-          {office.contacts.length > 2 ? office.contacts.slice(2).join(", ") : null}
+          {office.contacts.length > 2
+            ? office.contacts.slice(2).join(", ")
+            : null}
         </span>
       );
     }
@@ -105,7 +101,7 @@ function ContactForm() {
     setStatus("");
 
     try {
-      const response = await fetch("http://localhost:5000/contact", {
+      const response = await fetch(`${API_URL}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -132,8 +128,8 @@ function ContactForm() {
     <section className="contact-form-section">
       <h2>Contact Us</h2>
       <p>
-      Have a question, a bright idea, or a story close to your heart?
-      <p>Let’s start a conversation </p>
+        Have a question, a bright idea, or a story close to your heart?
+        <p>Let’s start a conversation</p>
       </p>
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-row">

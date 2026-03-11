@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/footer.jsx";
+import API_URL from "../api";
 import "./styles/helpdesk.css";
 
 const Helpdesk = () => {
@@ -25,7 +26,7 @@ const Helpdesk = () => {
     e.preventDefault();
     setStatus("");
     try {
-      const response = await fetch("http://localhost:5000/helpdesk", {
+      const response = await fetch(`${API_URL}/helpdesk`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -102,7 +103,7 @@ const Helpdesk = () => {
           <textarea
             name="enquiry"
             placeholder="Enquiry Regarding"
-            value={form.enquiry}S
+            value={form.enquiry}
             onChange={handleChange}
             required
           />
