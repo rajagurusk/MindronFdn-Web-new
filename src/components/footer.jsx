@@ -56,6 +56,7 @@ function Footer() {
               </a>
             </li>
             <li>
+              
               <a href="https://x.com/MindronFdn" target="_blank" rel="noopener noreferrer">
                 <img src="/public/images/twitter.jpg" alt="Twitter" className="social-icon" />
                 Twitter

@@ -191,7 +191,7 @@ export default function Home() {
           {message && <p className="subscribe-message">{message}</p>}
         </div>
       </section>
-
+v
       <Footer />
     </div>
   );
