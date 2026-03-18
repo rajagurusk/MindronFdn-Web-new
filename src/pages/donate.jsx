@@ -80,6 +80,7 @@ function Donate() {
     termsAccepted: false,
     communicationConsent: false,
   });
+
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -87,9 +88,16 @@ function Donate() {
 
     if (name === "state") {
       const firstCity = citiesByState[value]?.[0] || "";
-      setForm({ ...form, state: value, city: firstCity });
+      setForm((prev) => ({
+        ...prev,
+        state: value,
+        city: firstCity,
+      }));
     } else {
-      setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+      setForm((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
     }
   };
 
@@ -117,32 +125,51 @@ function Donate() {
         amount: form.amount,
       });
 
-      if (!orderRes.data.order) {
+      if (!orderRes.data?.order) {
         setStatus("Payment order could not be created.");
         return;
       }
 
       const options = {
-        key: "rzp_test_RhwLFisI1L3Idw",
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: orderRes.data.order.amount,
         currency: "INR",
         name: "Mindron Foundation",
         description: "Donation",
         order_id: orderRes.data.order.id,
         handler: async function (response) {
-          const saveRes = await axios.post(`${API_URL}/donate/verify`, {
-            ...form,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_signature: response.razorpay_signature,
-          });
+          try {
+            const saveRes = await axios.post(`${API_URL}/donate/verify`, {
+              ...form,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_signature: response.razorpay_signature,
+            });
 
-          if (saveRes.data.success) {
-            setStatus(
-              "Thank you for your donation! Invoice has been sent to your email."
-            );
-          } else {
-            setStatus("Payment succeeded but could not save donation info.");
+            if (saveRes.data?.success) {
+              setStatus(
+                "Thank you for your donation! Receipt has been sent to your email."
+              );
+              setForm({
+                fullName: "",
+                email: "",
+                mobileNumber: "",
+                address: "",
+                country: "India",
+                state: "Maharashtra",
+                city: "Mumbai",
+                pincode: "",
+                amount: "",
+                panNumber: "",
+                termsAccepted: false,
+                communicationConsent: false,
+              });
+            } else {
+              setStatus("Payment succeeded but donation verification failed.");
+            }
+          } catch (verifyError) {
+            console.error("Donation verify error:", verifyError);
+            setStatus("Payment succeeded but could not verify donation.");
           }
         },
         prefill: {
@@ -151,18 +178,32 @@ function Donate() {
           contact: form.mobileNumber,
         },
         theme: { color: "#7eb564" },
+        modal: {
+          ondismiss: function () {
+            setStatus("Payment popup closed.");
+          },
+        },
       };
+
+      if (!window.Razorpay) {
+        setStatus("Razorpay SDK failed to load.");
+        return;
+      }
 
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
-      setStatus("Error while processing payment.");
+      console.error("Donation order error:", error);
+      setStatus(
+        error?.response?.data?.message || "Error while processing payment."
+      );
     }
   };
 
   return (
     <div className="donate-container">
       <h2>Mindron Foundation</h2>
+
       <form className="donate-form" onSubmit={handleDonateNow}>
         <div className="form-row">
           <div>
@@ -175,6 +216,7 @@ function Donate() {
               required
             />
           </div>
+
           <div>
             <label>Mobile Number *</label>
             <input
@@ -198,6 +240,7 @@ function Donate() {
               required
             />
           </div>
+
           <div>
             <label>Address *</label>
             <input
@@ -217,8 +260,9 @@ function Donate() {
               <option>India</option>
             </select>
           </div>
+
           <div>
-            <label>Pincode</label>
+            <label>Pincode *</label>
             <input
               type="text"
               name="pincode"
@@ -240,8 +284,9 @@ function Donate() {
               ))}
             </select>
           </div>
+
           <div>
-            <label>Amount (INR)</label>
+            <label>Amount (INR) *</label>
             <input
               type="number"
               name="amount"
@@ -263,6 +308,7 @@ function Donate() {
               ))}
             </select>
           </div>
+
           <div>
             <label>PAN Number *</label>
             <input
@@ -308,6 +354,7 @@ function Donate() {
             Section 80G, as Mindron Foundation is registered as a non-profit
             organization.
           </p>
+
           <div className="payment-icons">
             <img
               src="/images/donateimg.jpg"

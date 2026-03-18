@@ -26,7 +26,7 @@ export default function AboutUs() {
           designed to help students think clearly, learn confidently, and dream
           boldly. To make sure that our solutions are workable,
           language-friendly, and grounded in local realities, we collaborate
-          with educators, NGOs, and volunteers
+          with educators, NGOs, and volunteers.
         </p>
         <p>
           Children in low-income schools, first-generation students, and young
@@ -67,7 +67,7 @@ export default function AboutUs() {
           <article className="aboutus-card">
             <h3>Our Vision</h3>
             <p>
-              A society where every individual, regardless of background, have
+              A society where every individual, regardless of background, has
               access to the information, healthcare, and means of subsistence
               necessary to live with dignity and purpose.
             </p>
@@ -96,6 +96,7 @@ export default function AboutUs() {
               </p>
             </div>
           </div>
+
           <div className="aboutus-leader-card">
             <div className="aboutus-leader-img">
               <img src="/images/leader-director.jpg" alt="Director" />
@@ -114,6 +115,7 @@ export default function AboutUs() {
               </p>
             </div>
           </div>
+
           <div className="aboutus-leader-card">
             <div className="aboutus-leader-img">
               <img src="/images/leader-manager.jpg" alt="Program Manager" />
@@ -134,6 +136,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
       <Footer />
     </div>
   );

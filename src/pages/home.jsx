@@ -9,7 +9,6 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  // Subscribe form handler
   const handleSubscribeSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -29,13 +28,14 @@ export default function Home() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message);
+        setMessage(data.message || "Subscribed successfully.");
         setEmail("");
       } else {
-        setMessage(data.error || "Subscription failed.");
+        setMessage(data.error || data.message || "Subscription failed.");
       }
     } catch (error) {
-      setMessage("Error connecting to the server.");
+      console.error("Subscribe error:", error);
+      setMessage("Error connecting to server.");
     }
   };
 
@@ -191,7 +191,7 @@ export default function Home() {
           {message && <p className="subscribe-message">{message}</p>}
         </div>
       </section>
-v
+
       <Footer />
     </div>
   );

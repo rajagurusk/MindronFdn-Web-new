@@ -82,7 +82,8 @@ function OfficesSection() {
 }
 
 function ContactForm() {
-  const recaptchaRef = useRef();
+  const recaptchaRef = useRef(null);
+
   const [form, setForm] = useState({
     fullname: "",
     email: "",
@@ -90,6 +91,7 @@ function ContactForm() {
     phone: "",
     message: "",
   });
+
   const [status, setStatus] = useState("");
 
   function handleChange(e) {
@@ -106,9 +108,11 @@ function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+
       const data = await response.json();
+
       if (response.ok) {
-        setStatus(data.message);
+        setStatus(data.message || "Message sent successfully.");
         setForm({
           fullname: "",
           email: "",
@@ -116,10 +120,15 @@ function ContactForm() {
           phone: "",
           message: "",
         });
+
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+        }
       } else {
-        setStatus(data.error || "Submission failed.");
+        setStatus(data.error || data.message || "Submission failed.");
       }
-    } catch {
+    } catch (error) {
+      console.error("Contact error:", error);
       setStatus("Error connecting to server.");
     }
   }
@@ -127,10 +136,9 @@ function ContactForm() {
   return (
     <section className="contact-form-section">
       <h2>Contact Us</h2>
-      <p>
-        Have a question, a bright idea, or a story close to your heart?
-        <p>Let’s start a conversation</p>
-      </p>
+      <p>Have a question, a bright idea, or a story close to your heart?</p>
+      <p>Let’s start a conversation</p>
+
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-row">
           <input
@@ -142,6 +150,7 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
+
         <div className="form-row">
           <input
             type="email"
@@ -152,6 +161,7 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
+
         <div className="form-row">
           <input
             type="text"
@@ -170,6 +180,7 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
+
         <div className="form-row">
           <textarea
             name="message"
@@ -180,16 +191,19 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
+
         <div className="captcha-row">
           <ReCAPTCHA
             sitekey="6LdZcREsAAAAAKB7HcGIBmmqzmVEw2GfcZYYVxGY"
             ref={recaptchaRef}
           />
         </div>
+
         <button type="submit" className="submit-btn">
           Submit
         </button>
       </form>
+
       {status && (
         <p style={{ color: "#c43d3d", marginTop: "12px" }}>{status}</p>
       )}

@@ -12,6 +12,7 @@ const Helpdesk = () => {
     orgName: "",
     enquiry: "",
   });
+
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -25,15 +26,18 @@ const Helpdesk = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("");
+
     try {
       const response = await fetch(`${API_URL}/helpdesk`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+
       const data = await response.json();
+
       if (response.ok) {
-        setStatus(data.message);
+        setStatus(data.message || "Enquiry submitted successfully.");
         setForm({
           name: "",
           phone: "",
@@ -43,9 +47,10 @@ const Helpdesk = () => {
           enquiry: "",
         });
       } else {
-        setStatus(data.error || "Submission failed.");
+        setStatus(data.error || data.message || "Submission failed.");
       }
-    } catch {
+    } catch (error) {
+      console.error("Helpdesk error:", error);
       setStatus("Error connecting to server.");
     }
   };
@@ -58,6 +63,7 @@ const Helpdesk = () => {
           <p className="helpdesk-desc">
             Got a question? Just drop us a message below
           </p>
+
           <input
             type="text"
             name="name"
@@ -66,13 +72,16 @@ const Helpdesk = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="text"
             name="phone"
             placeholder="Phone No"
             value={form.phone}
             onChange={handleChange}
+            required
           />
+
           <input
             type="email"
             name="email"
@@ -81,6 +90,7 @@ const Helpdesk = () => {
             onChange={handleChange}
             required
           />
+
           <select
             name="type"
             value={form.type}
@@ -92,6 +102,7 @@ const Helpdesk = () => {
             <option value="Organization">Organization</option>
             <option value="Charity Trust">Charity Trust</option>
           </select>
+
           <input
             type="text"
             name="orgName"
@@ -100,6 +111,7 @@ const Helpdesk = () => {
             onChange={handleChange}
             required
           />
+
           <textarea
             name="enquiry"
             placeholder="Enquiry Regarding"
@@ -107,12 +119,15 @@ const Helpdesk = () => {
             onChange={handleChange}
             required
           />
+
           <button type="submit" className="helpdesk-submit-btn">
             Submit
           </button>
+
           {status && <div className="helpdesk-status-message">{status}</div>}
         </form>
       </div>
+
       <Footer />
     </div>
   );
