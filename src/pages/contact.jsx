@@ -1,7 +1,6 @@
 import "./styles/contact.css";
 import Footer from "../components/footer.jsx";
-import React, { useRef, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import React, { useState } from "react";
 import API_URL from "../../api.js";
 
 function OfficesSection() {
@@ -50,17 +49,13 @@ function OfficesSection() {
       {contactDetails.map((office, idx) => (
         <div className="office-card" key={idx}>
           <h4>{office.title}</h4>
-          <div style={{ marginTop: 8 }}>
+          <div className="office-content">
             <span className="office-label">Contact no: </span>
-            <span className="office-value">
-              {office.contacts.join(", ")}
-            </span>
+            <span className="office-value">{office.contacts.join(", ")}</span>
             <br />
-
             <span className="office-label">Email: </span>
             <span className="office-value">{office.email}</span>
             <br />
-
             <span className="office-label">Address: </span>
             <span className="office-address">{office.address}</span>
           </div>
@@ -71,8 +66,6 @@ function OfficesSection() {
 }
 
 function ContactForm() {
-  const recaptchaRef = useRef(null);
-
   const [form, setForm] = useState({
     fullname: "",
     email: "",
@@ -91,14 +84,6 @@ function ContactForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("");
-
-    // ✅ Check captcha
-    const captchaValue = recaptchaRef.current?.getValue();
-    if (!captchaValue) {
-      setStatus("Please verify captcha.");
-      return;
-    }
-
     setLoading(true);
 
     try {
@@ -108,7 +93,6 @@ function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...form,
           fullname: form.fullname.trim(),
           email: form.email.trim(),
           subject: form.subject.trim(),
@@ -121,7 +105,6 @@ function ContactForm() {
 
       if (response.ok) {
         setStatus(data.message || "Message sent successfully.");
-
         setForm({
           fullname: "",
           email: "",
@@ -129,17 +112,15 @@ function ContactForm() {
           phone: "",
           message: "",
         });
-
-        recaptchaRef.current.reset();
       } else {
         setStatus(data.error || data.message || "Submission failed.");
       }
     } catch (error) {
       console.error("Contact error:", error);
       setStatus("Error connecting to server.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
@@ -149,7 +130,7 @@ function ContactForm() {
       <p>Let’s start a conversation</p>
 
       <form className="contact-form" onSubmit={handleSubmit}>
-        <div className="form-row">
+        <div className="form-row single-row">
           <input
             type="text"
             name="fullname"
@@ -160,7 +141,7 @@ function ContactForm() {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-row single-row">
           <input
             type="email"
             name="email"
@@ -190,21 +171,14 @@ function ContactForm() {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-row single-row">
           <textarea
             name="message"
             placeholder="Your Message"
-            rows={4}
+            rows={5}
             required
             value={form.message}
             onChange={handleChange}
-          />
-        </div>
-
-        <div className="captcha-row">
-          <ReCAPTCHA
-            sitekey="6LdZcREsAAAAAKB7HcGIBmmqzmVEw2GfcZYYVxGY"
-            ref={recaptchaRef}
           />
         </div>
 
@@ -213,9 +187,7 @@ function ContactForm() {
         </button>
       </form>
 
-      {status && (
-        <p style={{ color: "#c43d3d", marginTop: "12px" }}>{status}</p>
-      )}
+      {status && <p className="contact-status">{status}</p>}
     </section>
   );
 }

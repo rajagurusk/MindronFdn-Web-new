@@ -1,180 +1,186 @@
-/* Whole page background */
 .contact-page {
   width: 100%;
   background: #f5f7fb;
 }
 
-/* Fills viewport below header (adjust 80px to real header height) */
 .contact-page-inner {
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
 }
 
-/* Two main columns */
 .contact-layout {
-  max-width: 1380px;              /* wider so columns touch nav edges more */
-  margin: 40px auto 60px auto;
+  max-width: 1380px;
+  margin: 18px auto 50px auto;
+  padding: 0 14px;
   display: flex;
-  gap: 20px;                      /* slightly smaller gap */
-  align-items: stretch;           /* same visual height */
-  flex: 1;                        /* grow to take available height */
+  gap: 18px;
+  align-items: stretch;
+  flex: 1;
+  box-sizing: border-box;
 }
 
-/* LEFT SIDE: 4 address cards */
 .offices-section {
-  flex: 1.5;                      /* more space for addresses */
+  flex: 1.5;
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
 }
 
 .office-card {
-  flex: 1 1 calc(50% - 9px);      /* 2 cards per row, can grow */
-  background: #fff;
-  border-radius: 11px;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.07);
-  padding: 24px 26px 22px 26px;   /* more inner space */
+  flex: 1 1 calc(50% - 9px);
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+  padding: 28px 24px;
   box-sizing: border-box;
+  min-height: 318px;
 }
 
-/* title bigger */
 .office-card h4 {
+  margin: 0 0 16px 0;
+  color: #145d97;
+  font-size: 1.28rem;
   font-weight: 700;
-  color: #195c95;
-  font-size: 1.25rem;             /* was 1.13em */
-  margin: 8px 0 12px 0;
 }
 
-/* labels bigger */
+.office-content {
+  margin-top: 6px;
+}
+
 .office-label {
   font-weight: 700;
-  color: #105a94;
-  font-size: 1.05rem;
+  color: #115a93;
+  font-size: 1.03rem;
+  line-height: 1.6;
 }
 
-/* values & address bigger */
 .office-value,
 .office-address {
-  color: #1b3055;
-  font-size: 1.03rem;
-  font-weight: 400;
-  line-height: 1.5;
+  color: #1f3554;
+  font-size: 1.02rem;
+  line-height: 1.6;
 }
 
 .office-address {
   font-weight: 600;
 }
 
-/* RIGHT SIDE: contact form box */
 .contact-form-section {
-  flex: 0 0 38%;                  /* slightly wider form */
+  flex: 0 0 38%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;            /* center content horizontally */
-  background: #fff;
+  align-items: center;
+  background: #ffffff;
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  padding: 40px 34px 32px 34px;   /* more padding so it feels balanced */
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.06);
+  padding: 42px 30px 28px 30px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .contact-form-section h2 {
-  font-size: 2.1rem;
-  margin-bottom: 10px;
-  color: #175a8c;
+  font-size: 2.2rem;
+  color: #175c92;
   font-weight: 700;
-  letter-spacing: 1px;
-  width: 100%;
-  text-align: center;             /* ensure heading text is centered */
+  margin: 0 0 24px 0;
 }
 
 .contact-form-section p {
-  color: #2a5d85;
+  color: #3c678e;
   font-size: 1.05rem;
-  margin-bottom: 20px;
+  margin: 0 0 22px 0;
+  line-height: 1.6;
 }
 
 .contact-form {
   width: 100%;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  font-size: 1rem;
-  padding: 12px;
-  border: 1px solid #a6cbe1;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  background: #fbfbfb;
-  outline: none;
-  transition: border 0.11s;
-}
-
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-  border-color: #175a8c;
+  margin-top: 6px;
 }
 
 .form-row {
   display: flex;
-  flex-direction: row;
-  gap: 15px;
+  gap: 14px;
   width: 100%;
+  margin-bottom: 14px;
 }
 
-.form-row input[type="text"],
-.form-row input[type="email"] {
+.single-row {
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
   width: 100%;
+  padding: 13px 12px;
+  border: 1px solid #b8d2e7;
+  border-radius: 6px;
+  font-size: 0.98rem;
+  color: #29496a;
+  background: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #7c8fa3;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #7fb45a;
+  box-shadow: 0 0 0 3px rgba(127, 180, 90, 0.12);
 }
 
 .contact-form textarea {
-  min-height: 78px;
+  min-height: 96px;
   resize: vertical;
   font-family: inherit;
 }
 
-.captcha-row {
-  display: flex;
-  justify-content: center;
-  margin: 18px 0;
-}
-
 .submit-btn {
-  width: 180px;
-  font-size: 1.15em;
-  font-weight: 600;
-  padding: 11px 0;
-  color: #fff;
-  background: #7aad55;
+  width: 160px;
+  height: 50px;
+  margin-top: 16px;
   border: none;
-  border-radius: 6px;
-  margin-top: 11px;
+  border-radius: 7px;
+  background: #86b95b;
+  color: #ffffff;
+  font-size: 1.08rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.19s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: background 0.2s ease;
 }
 
 .submit-btn:hover {
-  background: #60913e;
+  background: #6ea547;
 }
 
-/* Ensure footer sits at bottom when content is short */
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.contact-status {
+  margin-top: 18px;
+  color: #c43d3d;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .contact-page-inner > footer,
 .contact-page-inner > .footer {
   margin-top: auto;
 }
 
-/* Responsive: stack on small screens */
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .contact-layout {
     flex-direction: column;
     gap: 24px;
-    padding: 0 10px;
   }
 
   .offices-section {
@@ -182,16 +188,34 @@
   }
 
   .office-card {
-    flex: 1 0 100%;
+    flex: 1 1 calc(50% - 9px);
+    min-height: auto;
   }
 
   .contact-form-section {
     flex: 1 0 auto;
-    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .offices-section {
+    flex-direction: column;
+  }
+
+  .office-card {
+    flex: 1 1 100%;
   }
 
   .form-row {
     flex-direction: column;
-    gap: 11px;
+  }
+
+  .contact-form-section {
+    padding: 28px 18px 24px 18px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 1.9rem;
   }
 }
