@@ -14,6 +14,7 @@ const Helpdesk = () => {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,11 +28,22 @@ const Helpdesk = () => {
     e.preventDefault();
     setStatus("");
 
+    setLoading(true);
+
     try {
       const response = await fetch(`${API_URL}/helpdesk`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          email: form.email.trim(),
+          type: form.type.trim(),
+          orgName: form.orgName.trim(),
+          enquiry: form.enquiry.trim(),
+        }),
       });
 
       const data = await response.json();
@@ -53,6 +65,8 @@ const Helpdesk = () => {
       console.error("Helpdesk error:", error);
       setStatus("Error connecting to server.");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -120,8 +134,12 @@ const Helpdesk = () => {
             required
           />
 
-          <button type="submit" className="helpdesk-submit-btn">
-            Submit
+          <button
+            type="submit"
+            className="helpdesk-submit-btn"
+            disabled={loading}
+          >
+            {loading ? "Submitting..." : "Submit"}
           </button>
 
           {status && <div className="helpdesk-status-message">{status}</div>}

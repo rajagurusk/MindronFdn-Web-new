@@ -82,6 +82,24 @@ function Donate() {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const resetForm = () => {
+    setForm({
+      fullName: "",
+      email: "",
+      mobileNumber: "",
+      address: "",
+      country: "India",
+      state: "Maharashtra",
+      city: "Mumbai",
+      pincode: "",
+      amount: "",
+      panNumber: "",
+      termsAccepted: false,
+      communicationConsent: false,
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -93,40 +111,69 @@ function Donate() {
         state: value,
         city: firstCity,
       }));
-    } else {
-      setForm((prev) => ({
-        ...prev,
-        [name]: type === "checkbox" ? checked : value,
-      }));
+      return;
     }
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleDonateNow = async (e) => {
     e.preventDefault();
+    setStatus("");
+
+    const trimmedForm = {
+      ...form,
+      fullName: form.fullName.trim(),
+      email: form.email.trim(),
+      mobileNumber: form.mobileNumber.trim(),
+      address: form.address.trim(),
+      pincode: form.pincode.trim(),
+      amount: form.amount.toString().trim(),
+      panNumber: form.panNumber.trim().toUpperCase(),
+    };
 
     if (
-      !form.fullName ||
-      !form.email ||
-      !form.mobileNumber ||
-      !form.address ||
-      !form.pincode ||
-      !form.amount ||
-      !form.panNumber ||
-      !form.termsAccepted
+      !trimmedForm.fullName ||
+      !trimmedForm.email ||
+      !trimmedForm.mobileNumber ||
+      !trimmedForm.address ||
+      !trimmedForm.pincode ||
+      !trimmedForm.amount ||
+      !trimmedForm.termsAccepted
     ) {
       setStatus("Please fill all required fields and accept Terms.");
       return;
     }
 
+    if (Number(trimmedForm.amount) <= 0) {
+      setStatus("Please enter a valid donation amount.");
+      return;
+    }
+
+    if (!window.Razorpay) {
+      setStatus("Razorpay SDK failed to load.");
+      return;
+    }
+
+    if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
+      setStatus("Razorpay key is missing in frontend environment variables.");
+      return;
+    }
+
+    setLoading(true);
     setStatus("Processing payment...");
 
     try {
       const orderRes = await axios.post(`${API_URL}/donate/order`, {
-        amount: form.amount,
+        amount: trimmedForm.amount,
       });
 
       if (!orderRes.data?.order) {
         setStatus("Payment order could not be created.");
+        setLoading(false);
         return;
       }
 
@@ -139,8 +186,10 @@ function Donate() {
         order_id: orderRes.data.order.id,
         handler: async function (response) {
           try {
+            setStatus("Verifying payment...");
+
             const saveRes = await axios.post(`${API_URL}/donate/verify`, {
-              ...form,
+              ...trimmedForm,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
               razorpay_signature: response.razorpay_signature,
@@ -150,53 +199,48 @@ function Donate() {
               setStatus(
                 "Thank you for your donation! Receipt has been sent to your email."
               );
-              setForm({
-                fullName: "",
-                email: "",
-                mobileNumber: "",
-                address: "",
-                country: "India",
-                state: "Maharashtra",
-                city: "Mumbai",
-                pincode: "",
-                amount: "",
-                panNumber: "",
-                termsAccepted: false,
-                communicationConsent: false,
-              });
+              resetForm();
             } else {
               setStatus("Payment succeeded but donation verification failed.");
             }
           } catch (verifyError) {
             console.error("Donation verify error:", verifyError);
             setStatus("Payment succeeded but could not verify donation.");
+          } finally {
+            setLoading(false);
           }
         },
         prefill: {
-          name: form.fullName,
-          email: form.email,
-          contact: form.mobileNumber,
+          name: trimmedForm.fullName,
+          email: trimmedForm.email,
+          contact: trimmedForm.mobileNumber,
         },
-        theme: { color: "#7eb564" },
+        theme: {
+          color: "#7eb564",
+        },
         modal: {
           ondismiss: function () {
             setStatus("Payment popup closed.");
+            setLoading(false);
           },
         },
       };
 
-      if (!window.Razorpay) {
-        setStatus("Razorpay SDK failed to load.");
-        return;
-      }
-
       const rzp = new window.Razorpay(options);
+
+      rzp.on("payment.failed", function (response) {
+        console.error("Payment failed:", response.error);
+        setStatus(response.error?.description || "Payment failed.");
+        setLoading(false);
+      });
+
       rzp.open();
     } catch (error) {
       console.error("Donation order error:", error);
       setStatus(
         error?.response?.data?.message || "Error while processing payment."
       );
+      setLoading(false);
     }
   };
 
@@ -256,7 +300,7 @@ function Donate() {
         <div className="form-row">
           <div>
             <label>Country</label>
-            <select name="country" value="India" disabled>
+            <select name="country" value={form.country} disabled>
               <option>India</option>
             </select>
           </div>
@@ -290,6 +334,7 @@ function Donate() {
             <input
               type="number"
               name="amount"
+              min="1"
               value={form.amount}
               onChange={handleChange}
               required
@@ -310,13 +355,13 @@ function Donate() {
           </div>
 
           <div>
-            <label>PAN Number *</label>
+            <label>PAN Number</label>
             <input
               type="text"
               name="panNumber"
               value={form.panNumber}
               onChange={handleChange}
-              required
+              placeholder="Optional for 80G receipt"
             />
           </div>
         </div>
@@ -364,8 +409,8 @@ function Donate() {
           </div>
         </div>
 
-        <button className="donate-btn" type="submit">
-          DONATE NOW
+        <button className="donate-btn" type="submit" disabled={loading}>
+          {loading ? "PROCESSING..." : "DONATE NOW"}
         </button>
 
         {status && (

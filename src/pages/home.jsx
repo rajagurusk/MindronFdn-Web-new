@@ -13,7 +13,7 @@ export default function Home() {
     e.preventDefault();
     setMessage("");
 
-    if (!email) {
+    if (!email.trim()) {
       setMessage("Please enter an email.");
       return;
     }
@@ -21,8 +21,10 @@ export default function Home() {
     try {
       const response = await fetch(`${API_URL}/subscribe`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email.trim() }),
       });
 
       const data = await response.json();
@@ -59,7 +61,7 @@ export default function Home() {
           </p>
           <p>
             Our work is driven by excellence, transparency, and empathy. To
-            ensure that no child's potential is limited by circumstance, We
+            ensure that no child&apos;s potential is limited by circumstance, we
             collaborate with schools, NGOs, and local partners to bring
             workshops, digital resources, and skill-building programs to
             underprivileged communities.
@@ -71,6 +73,7 @@ export default function Home() {
             long-term opportunity, dignity, and self-assurance.
           </p>
         </div>
+
         <div className="home-about-photo">
           <img src="/images/founder.jpg" alt="Foundation Leader" />
         </div>
@@ -84,28 +87,33 @@ export default function Home() {
           families, provide critical assistance, and create lasting change in
           communities that need it most.
         </p>
+
         <div className="home-stats-row">
           <div className="home-stat-box">
             <img src="/images/stats1.jpg" alt="Public Health" />
             <span className="home-stat-number">50+</span>
             <span className="home-stat-label">public health initiatives</span>
           </div>
+
           <div className="home-stat-box">
             <img src="/images/stats2.jpg" alt="Health Camps" />
             <span className="home-stat-number">5</span>
             <span className="home-stat-label">annual health camps</span>
           </div>
+
           <div className="home-stat-box">
             <img src="/images/stats3.jpg" alt="Volunteers" />
             <span className="home-stat-number">300+</span>
             <span className="home-stat-label">volunteers</span>
           </div>
+
           <div className="home-stat-box">
             <img src="/images/stats4.jpg" alt="Donors" />
             <span className="home-stat-number">77+</span>
             <span className="home-stat-label">active donors</span>
           </div>
         </div>
+
         <div className="home-stat-center">
           <p>
             Every contribution, big or small, makes a difference.
@@ -124,25 +132,28 @@ export default function Home() {
 
       <section className="home-success">
         <h4>Success Stories</h4>
+
         <div className="home-success-row">
           <div className="home-story-box">
             <img src="/images/story1.jpg" alt="Story 1" />
             <h5>Empowering Women</h5>
             <p>
               From health access to strong voices and hope, our dedicated work
-              transformed Sita's life and gives her family new strength.
+              transformed Sita&apos;s life and gives her family new strength.
             </p>
-            <button>Learn More</button>
+            <button type="button">Learn More</button>
           </div>
+
           <div className="home-story-box">
             <img src="/images/story2.jpg" alt="Story 2" />
             <h5>Changing Generations</h5>
             <p>
-              Priya and Maya's journey shows how continued support in youth
+              Priya and Maya&apos;s journey shows how continued support in youth
               programs builds brighter futures with confidence and care.
             </p>
-            <button>Learn More</button>
+            <button type="button">Learn More</button>
           </div>
+
           <div className="home-story-box">
             <img src="/images/story3.jpg" alt="Story 3" />
             <h5>Healthy Living</h5>
@@ -150,13 +161,14 @@ export default function Home() {
               With support, Mr. Ram found better wellness. Our health camps
               support seniors in living healthy and engaged lives.
             </p>
-            <button>Learn More</button>
+            <button type="button">Learn More</button>
           </div>
         </div>
       </section>
 
       <section className="latest-update-container">
         <h2 className="latest-update-title">Latest Updates</h2>
+
         <div className="latest-update-box">
           <div className="coming-soon-msg">
             <span
@@ -170,12 +182,14 @@ export default function Home() {
               Coming Soon
             </span>
           </div>
+
           <div className="subscribe-desc">
             Stay tuned! Exciting updates will be posted here.
             <br />
             Want to be notified? Subscribe now to keep up with our latest
             developments.
           </div>
+
           <form className="home-subscribe-row" onSubmit={handleSubscribeSubmit}>
             <input
               type="email"
@@ -188,6 +202,7 @@ export default function Home() {
               Subscribe
             </button>
           </form>
+
           {message && <p className="subscribe-message">{message}</p>}
         </div>
       </section>

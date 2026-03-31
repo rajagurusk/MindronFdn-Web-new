@@ -45,21 +45,6 @@ function OfficesSection() {
     },
   ];
 
-  function renderContacts(office) {
-    if (office.title === "USA–New York" || office.title === "Hong Kong") {
-      return (
-        <span className="office-value">
-          {office.contacts.slice(0, 2).join(", ")}
-          <br />
-          {office.contacts.length > 2
-            ? office.contacts.slice(2).join(", ")
-            : null}
-        </span>
-      );
-    }
-    return <span className="office-value">{office.contacts.join(", ")}</span>;
-  }
-
   return (
     <section className="offices-section">
       {contactDetails.map((office, idx) => (
@@ -67,11 +52,15 @@ function OfficesSection() {
           <h4>{office.title}</h4>
           <div style={{ marginTop: 8 }}>
             <span className="office-label">Contact no: </span>
-            {renderContacts(office)}
+            <span className="office-value">
+              {office.contacts.join(", ")}
+            </span>
             <br />
+
             <span className="office-label">Email: </span>
             <span className="office-value">{office.email}</span>
             <br />
+
             <span className="office-label">Address: </span>
             <span className="office-address">{office.address}</span>
           </div>
@@ -93,6 +82,7 @@ function ContactForm() {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -102,17 +92,36 @@ function ContactForm() {
     e.preventDefault();
     setStatus("");
 
+    // ✅ Check captcha
+    const captchaValue = recaptchaRef.current?.getValue();
+    if (!captchaValue) {
+      setStatus("Please verify captcha.");
+      return;
+    }
+
+    setLoading(true);
+
     try {
       const response = await fetch(`${API_URL}/contact`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          fullname: form.fullname.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim(),
+          phone: form.phone.trim(),
+          message: form.message.trim(),
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setStatus(data.message || "Message sent successfully.");
+
         setForm({
           fullname: "",
           email: "",
@@ -121,9 +130,7 @@ function ContactForm() {
           message: "",
         });
 
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
+        recaptchaRef.current.reset();
       } else {
         setStatus(data.error || data.message || "Submission failed.");
       }
@@ -131,6 +138,8 @@ function ContactForm() {
       console.error("Contact error:", error);
       setStatus("Error connecting to server.");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -199,8 +208,8 @@ function ContactForm() {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          Submit
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? "Sending..." : "Submit"}
         </button>
       </form>
 
