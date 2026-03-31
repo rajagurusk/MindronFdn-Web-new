@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer.jsx";
-import API_URL from "../api";
+import API_URL from "../../api.js";
 import "./styles/home.css";
 
 export default function Home() {

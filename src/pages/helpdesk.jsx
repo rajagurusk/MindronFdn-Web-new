@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/footer.jsx";
-import API_URL from "../api";
+import API_URL from "../../api.js";
 import "./styles/helpdesk.css";
 
 const Helpdesk = () => {

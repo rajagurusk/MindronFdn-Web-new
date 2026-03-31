@@ -2,7 +2,7 @@ import "./styles/contact.css";
 import Footer from "../components/footer.jsx";
 import React, { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import API_URL from "../api";
+import API_URL from "../../api.js";
 
 function OfficesSection() {
   const contactDetails = [
