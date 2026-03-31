@@ -6,3 +6,4 @@ export default defineConfig({
 plugins: [react()],
 base: '/',   // ensures assets load correctly when hosted on domain root
 })
+
